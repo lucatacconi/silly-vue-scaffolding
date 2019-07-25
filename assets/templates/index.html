@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+    <head>
+
+        <!-- <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <meta name="robots" content="index, nofollow"> -->
+
+        <!-- Mancano tutti i metadata abbinati a Smarty-->
+
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
+        <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+
+        <link href="../assets/css/app.css" rel="stylesheet">
+
+        <title>Test</title> <!-- Sostituzione da ENV -->
+    </head>
+    <body>
+        <div id="edge">
+            <v-app>
+                <v-content>
+                    <v-container>
+                        <container :showloading="showloading"></container>
+                    </v-container>
+                </v-content>
+            </v-app>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+
+        <script src="../assets/js/httpVueLoader.js"></script>
+        <!-- Questo va sostituito con quello da CDN se viene aggioranto -->
+
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+        <script src="../assets/js/utils.js"></script>
+
+        <!-- Potrebbe non servire -->
+        <script src="../assets/js/boostrap.js"></script>
+
+
+        <script>
+
+            Vue.use(VeeValidate, { locale: 'en' });
+            Vue.use(Vuetify);
+            Vue.config.productionTip = false;
+
+            var Edge = new Vue({
+                el: '#edge',
+                data:{
+                    showloading: false
+                },
+                vuetify: new Vuetify(),
+                components: {
+                    'container': httpVueLoader('../app/shareds/Container.vue')
+                }
+            })
+        </script>
+    </body>
+</html>

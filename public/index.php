@@ -29,7 +29,7 @@ foreach (glob($config_path."*.json") as $filename) {
 $container['view'] = function ($c) {
     $view = new \Slim\Views\Smarty('../assets/templates', [
         'cacheDir' => '../var/cache',
-        'compileDir' => '../var/compile'
+        'compileDir' => '../var/compiles'
     ]);
 
     // Add Slim specific plugins
@@ -45,25 +45,33 @@ $container['view'] = function ($c) {
 
 
 
-//Startin Slim
-
+//Starting Slim
 $app = new \Slim\App($container);
 
+
+//Security layer
+$app->add(new Tuupola\Middleware\JwtAuthentication([
+    "secret" => getenv("JWT_SECRET"),
+    "ignore" => ["/", "/auth/login"],
+
+    "error" => function ($response, $arguments) {
+        $data["status"] = "Authentication error";
+        $data["message"] = $arguments["message"];
+        return $response
+            ->withHeader("Content-Type", "application/json")
+            ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    }
+]));
+
+//Boostrap layer
 $app->get('/', function ($request, $response, $args) {
     return $this->view->render($response, 'index.html', [
         //'name' => $args['name']
     ]);
 });
 
-$app->post('/login', function ($request, $response, $args) {
-    $response->getBody()->write("Hello");
-    return $response;
-});
-
-
-
-// foreach (glob("./api/*.php") as $filename) {
-//     require $filename;
-// }
+foreach (glob("../routes/*.php") as $filename) {
+    require $filename;
+}
 
 $app->run();

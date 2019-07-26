@@ -1,0 +1,11 @@
+{
+    "accounts":[
+        {
+            "username":"admin",
+            "name":"Admin User",
+            "password":"password",
+            "status":"A",
+            "expire-date":"2020-10-10"
+        }
+    ]
+}

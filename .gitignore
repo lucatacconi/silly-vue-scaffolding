@@ -1,8 +1,8 @@
 
 #compiled
 var/cache/
-var/compile/
-var/log/
+var/compiles/
+var/logs/
 
 # Logs files
 *.log

@@ -1,6 +1,6 @@
-<template id="user" lang="html">
+<template id="navigator" lang="html">
     <div class="text-xs-center">
-        USER
+        NAVIGATION AREA
     </div>
 </template>
 
@@ -8,9 +8,12 @@
     module.exports = {
         data: function() {
             return {
-                title: 'USER'
+
             }
         },
+        components: {
+            'navbar': httpVueLoader('../../app/shareds/NavBar.vue')
+        }
     }
 </script>
 

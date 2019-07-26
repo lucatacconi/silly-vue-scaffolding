@@ -59,7 +59,7 @@ $app->group('/auth', function () use ($app) {
                 "iat" => $now->getTimeStamp(),
                 "exp" => $future->getTimeStamp(),
                 "jti" => $jti,
-                "sub" => $params["USERNAME"],
+                "username" => $params["USERNAME"],
                 "name" => $aACCOUNT["name"]
             ];
 

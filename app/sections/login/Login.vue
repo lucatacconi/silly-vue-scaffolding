@@ -10,7 +10,7 @@
                             <v-spacer></v-spacer>
                         </v-toolbar>
                         <v-card-text>
-                            <v-form data-vv-scope="login-area">
+                            <v-form data-vv-scope="login-area" @keyup.enter.native="execLogin">
                                 <v-text-field
                                     v-model.trim="credentials.username"
                                     prepend-icon="person"

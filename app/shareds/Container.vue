@@ -2,7 +2,7 @@
     <div>
         <loading v-if="showloading"></loading>
 
-        <login v-if="!logged"></login>
+        <login v-if="!granted"></login>
         <user v-else></user>
     </div>
 </template>
@@ -11,7 +11,21 @@
     module.exports = {
         data: function() {
             return {
-                logged: false
+            }
+        },
+        computed: {
+            granted: function () {
+
+                // console.log(localStorage.getItem("token"));
+
+
+                if(!localStorage.getItem("token")){
+                    return false;
+                }else{
+                    return true;
+                }
+
+                // return false;
             }
         },
         props: ['showloading'],

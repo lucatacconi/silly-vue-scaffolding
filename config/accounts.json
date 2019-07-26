@@ -1,11 +1,10 @@
-{
-    "accounts":[
-        {
-            "username":"admin",
-            "name":"Admin User",
-            "password":"password",
-            "status":"A",
-            "expire-date":"2020-10-10"
-        }
-    ]
-}
+[
+    {
+        "username":"admin",
+        "name":"Admin User",
+        "mail":"admin@nomail.com",
+        "password":"password",
+        "status":"A",
+        "expireDate":"2020-10-10"
+    }
+]

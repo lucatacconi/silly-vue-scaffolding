@@ -43,8 +43,6 @@ $container['view'] = function ($c) {
 };
 
 
-
-
 //Starting Slim
 $app = new \Slim\App($container);
 
@@ -52,7 +50,10 @@ $app = new \Slim\App($container);
 //Security layer
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => getenv("JWT_SECRET"),
-    "ignore" => ["/", "/auth/login"],
+
+    //Remove test api passthrow before production
+    "ignore" => ["/", "/auth/login","/test/*"],
+    // "ignore" => ["/", "/auth/login"],
 
     "error" => function ($response, $arguments) {
         $data["status"] = "Authentication error";

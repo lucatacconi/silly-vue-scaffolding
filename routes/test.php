@@ -1,11 +1,8 @@
 <?php
 
-$app->get('/test1', function ($request, $response, $args) {
-    $response->getBody()->write("Hello1");
-    return $response;
-});
-
-$app->get('/test2', function ($request, $response, $args) {
-    $response->getBody()->write("Hello2");
-    return $response;
+$app->group('/test', function () use ($app) {
+    $app->get('/conn', function ($request, $response, $args) {
+        $response->getBody()->write("CONN OK");
+        return $response;
+    });
 });

@@ -1,34 +1,33 @@
 <template>
-<v-navigation-drawer
+    <v-navigation-drawer
         v-model="drawer"
         app
-      >
+    >
         <v-list
-          nav
-          dense
+            nav
+            dense
         >
-          <v-list-item-group
-            active-class="deep-purple--text text--accent-4"
-          >
-            <v-list-item>
-              <v-list-item-title>Foo</v-list-item-title>
-            </v-list-item>
+            <v-list-item-group
+                active-class="deep-purple--text text--accent-4"
+            >
+                <v-list-item>
+                    <v-list-item-title>Foo</v-list-item-title>
+                </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>Bar</v-list-item-title>
-            </v-list-item>
+                <v-list-item>
+                    <v-list-item-title>Bar</v-list-item-title>
+                </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>Fizz</v-list-item-title>
-            </v-list-item>
+                <v-list-item>
+                    <v-list-item-title>Fizz</v-list-item-title>
+                </v-list-item>
 
-            <v-list-item>
-              <v-list-item-title>Buzz</v-list-item-title>
-            </v-list-item>
-          </v-list-item-group>
+                <v-list-item>
+                    <v-list-item-title>Buzz</v-list-item-title>
+                </v-list-item>
+            </v-list-item-group>
         </v-list>
-      </v-navigation-drawer>
-
+    </v-navigation-drawer>
 </template>
 
 <script>
@@ -37,6 +36,13 @@ module.exports = {
         return{
         }
     },
-    props:['drawer']
+    props:['drawer'],
+    created:function() {
+        Utils.apiCall("get", "/util/menu")
+        .then(function (response) {
+            Utils.showLoadingOFF();
+            console.log(response.data);
+        });
+    }
 }
 </script>

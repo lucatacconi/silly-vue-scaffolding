@@ -15,7 +15,6 @@
         computed: {
             granted: function () {
                 if(!localStorage.getItem("token")){
-
                     return false;
                 }else{
                     if(!Utils.parseJwt(localStorage.getItem("token")).username ||
@@ -43,6 +42,20 @@
             'loading': httpVueLoader('../../app/shareds/Loading.vue'),
             'login': httpVueLoader('../../app/sections/login/Login.vue'),
             'navigator': httpVueLoader('../../app/shareds/Navigator.vue')
+        },
+        methods: {
+            checkSession: function(){
+                var self = this;
+                Utils.apiCall("get", "/session/check")
+                .then(function (response) {
+                    Utils.showLoadingOFF();
+                });
+            }
+        },
+        mounted: function() {
+            if(this.granted){
+                this.checkSession();
+            }
         }
     }
 </script>

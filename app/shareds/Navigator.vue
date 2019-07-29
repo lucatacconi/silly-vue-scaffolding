@@ -1,5 +1,8 @@
 <template id="navigator" lang="html">
-    <navbar><navbar>
+    <div>
+        <navbar></navbar>
+        <appfooter></appfooter>
+   </div>
 </template>
 
 <script type="text/javascript">
@@ -10,7 +13,8 @@
             }
         },
         components: {
-            'navbar': httpVueLoader('../../app/shareds/NavBar.vue')
+            'navbar': httpVueLoader('../../app/shareds/NavBar.vue'),
+            'appfooter': httpVueLoader('../../app/shareds/Footer.vue')
         }
     }
 </script>

@@ -1,7 +1,5 @@
 <template id="navigator" lang="html">
-    <div class="text-xs-center">
-        NAVIGATION AREA
-    </div>
+    <navbar><navbar>
 </template>
 
 <script type="text/javascript">

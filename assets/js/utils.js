@@ -19,6 +19,51 @@ var Utils = {
         return JSON.parse(jsonPayload);
     },
 
+    doLogoutAndGoHome: function () {
+        localStorage.removeItem("token");
+        localStorage.removeItem("accountData");
+        window.location.href = "index.php";
+        return;
+    },
+
+    apiCall: function (method, url, parameters, apikey) {
+        if (!method) {
+            console.error('Function apiCall missing argument (1)');
+            return;
+        }
+        if (!url) {
+            console.error('Function apiCall missing argument (2)');
+            return;
+        }
+
+        if(typeof parameters == "undefined"){ parameters = null; }
+
+        this.showLoadingON();
+
+        //If url star with http or https I'll use url to call api. Api called is external
+        //If url start with /xxxx it means that api is internal
+        if ( !(url.indexOf("https") == "-1" || url.indexOf("http") == "-1") ) {
+
+            if(url.substr(0, 1) == '/'){
+                url = 'index.php'+url;
+            }else{
+                url = 'index.php'+'/'+url;
+            }
+        }
+
+        if(typeof apikey == "undefined"){
+
+
+        }
+
+
+
+
+
+
+
+    },
+
     showLoadingON: function () {
         Edge.showloading = true;
     },

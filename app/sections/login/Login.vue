@@ -62,63 +62,12 @@
 
                 this.$validator.validateAll('login-area').then((result) =>{
                     if (result) {
-
                         Utils.apiCall("post", "/auth/login", self.credentials)
                         .then(function (response) {
-
-                            console.log(response.data);
-
-
                             localStorage.setItem("token", response.data.token);
                             localStorage.setItem("accountData", response.data.accountData);
                             Utils.goHome();
                         });
-
-
-                        // axios.post('index.php/auth/login', self.credentials)
-                        // .then(function (response) {
-
-                        //     if (typeof response.data !== 'undefined' && typeof response.data.token !== 'undefined') {
-                        //         localStorage.setItem("token", response.data.token);
-                        //         localStorage.setItem("accountData", response.data.accountData);
-                        //         window.location.href = "index.php";
-                        //         return;
-                        //     }else{
-                        //         Utils.showLoadingOFF();
-
-                        //         Swal.fire({
-                        //             type: 'error',
-                        //             title: 'Generic error',
-                        //             text: error.response,
-                        //         }).then((result) => {
-                        //             localStorage.removeItem("token");
-                        //             localStorage.removeItem("accountData");
-                        //         });
-                        //     }
-                        // })
-                        // .catch(function (error) {
-                        //     Utils.showLoadingOFF();
-
-                        //     if(error.response.status == 401){
-                        //         Swal.fire({
-                        //             type: 'error',
-                        //             title: 'Login error',
-                        //             text: "Wrong user or password",
-                        //         }).then((result) => {
-                        //             localStorage.removeItem("token");
-                        //             localStorage.removeItem("accountData");
-                        //         });
-                        //     }else{
-                        //         Swal.fire({
-                        //             type: 'error',
-                        //             title: 'Generic error',
-                        //             text: error.response,
-                        //         }).then((result) => {
-                        //             localStorage.removeItem("token");
-                        //             localStorage.removeItem("accountData");
-                        //         });
-                        //     }
-                        // })
                     }
                 });
             }

@@ -19,6 +19,17 @@ var Utils = {
         return JSON.parse(jsonPayload);
     },
 
+    showLoadingON: function () {
+        Edge.showloading = true;
+    },
+    showLoadingOFF: function () {
+        Edge.showloading = false;
+    },
+
+    goHome: function () {
+        window.location.href = "index.php";
+        return;
+    },
     doLogoutAndGoHome: function () {
         localStorage.removeItem("token");
         localStorage.removeItem("accountData");
@@ -27,26 +38,23 @@ var Utils = {
     },
 
     apiCall: function (method, url, parameters, apikey) {
-        if (!method) {
-            console.error('Function apiCall missing argument (1)');
-            return;
-        }
-        if (!url) {
-            console.error('Function apiCall missing argument (2)');
+
+        if (!method || !url) {
+            console.error('Function apiCall missing arguments');
             return;
         }
 
         if(typeof parameters == "undefined"){ parameters = null; }
 
-        this.showLoadingON();
+        Utils.showLoadingON();
 
         //If url start with http or https I'll use url to call api. Api called is external
         //If url start with /xxxx it means that api is internal
-        if ( !(url.indexOf("https") == "-1" || url.indexOf("http") == "-1") ) {
+        if ( url.indexOf("https") == -1 && url.indexOf("http") == -1 ) {
             if(url.substr(0, 1) == '/'){
-                url = 'index.php'+url;
+                url = 'index.php' + url;
             }else{
-                url = 'index.php'+'/'+url;
+                url = 'index.php' + '/' + url;
             }
         }
 
@@ -74,24 +82,9 @@ var Utils = {
             }
         }
 
-        axios(call_config).then(function (response) {
-            if (typeof response !== 'undefined'){
-                this.showLoadingOFF();
-                return response;
-            }else{
-                this.showLoadingOFF();
-
-                Swal.fire({
-                    type: 'error',
-                    title: 'Connection error',
-                    text: 'Check your internet connection and try again',
-                }).then((result) => {
-                    this.doLogoutAndGoHome();
-                }).catch(swal.noop);
-            }
-
-        }).catch(function (error) {
-            this.showLoadingOFF();
+        return axios(call_config)
+        .catch(function (error) {
+            Utils.showLoadingOFF();
 
             if(error.response.status == 401){
                 Swal.fire({
@@ -99,7 +92,7 @@ var Utils = {
                     title: 'Account error',
                     text: "Login error or session expired",
                 }).then((result) => {
-                    this.doLogoutAndGoHome();
+                    Utils.doLogoutAndGoHome();
                 });
             }else{
                 Swal.fire({
@@ -111,12 +104,5 @@ var Utils = {
                 }).catch(swal.noop);
             }
         })
-    },
-
-    showLoadingON: function () {
-        Edge.showloading = true;
-    },
-    showLoadingOFF: function () {
-        Edge.showloading = false;
     }
 };

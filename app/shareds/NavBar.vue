@@ -1,6 +1,6 @@
 <template id="navigator" lang="html">
-    <v-app-bar color="deep-purple accent-4" absolute dark>
-        <v-app-bar-nav-icon></v-app-bar-nav-icon>
+    <v-app-bar color="deep-purple accent-4" dark>
+        <v-app-bar-nav-icon @click="drawer()" ></v-app-bar-nav-icon>
         <v-toolbar-title>Page title</v-toolbar-title>
         <v-spacer></v-spacer>
         <navbartools></navbartools>
@@ -12,6 +12,11 @@
     module.exports = {
         data: function() {
             return {
+            }
+        },
+        methods: {
+            drawer:function(){
+                this.$emit("drawer")
             }
         },
         components: {

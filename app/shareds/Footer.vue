@@ -1,6 +1,8 @@
 <template id="appfooter" lang="html">
     <v-footer
       absolute
+      dark
+      color="deep-purple accent-4"
       class="font-weight-medium"
     >
       <v-flex

@@ -1,5 +1,5 @@
 <template id="navigator" lang="html">
-    <v-app-bar color="deep-purple accent-4" dark>
+    <v-app-bar color="blue-grey" dark>
         <v-app-bar-nav-icon @click="drawer()" ></v-app-bar-nav-icon>
         <v-toolbar-title>Page title</v-toolbar-title>
         <v-spacer></v-spacer>

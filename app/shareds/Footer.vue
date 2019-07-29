@@ -2,15 +2,11 @@
     <v-footer
       absolute
       dark
-      color="deep-purple accent-4"
-      class="font-weight-medium"
+      color="blue-grey"
     >
-      <v-flex
-        text-center
-        xs12
-      >
-        {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-      </v-flex>
+        Vuetify
+        <v-spacer></v-spacer>
+        &copy; {{ new Date().getFullYear() }}
     </v-footer>
 </template>
 

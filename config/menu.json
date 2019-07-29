@@ -1,5 +1,22 @@
 {
-    "menu":{
-
-    }
+    "menu":[
+        {
+            "title":"Test",
+            "icon":"settings",
+            "action":"",
+            "color":"",
+            "enable":true
+        },
+        {
+            "title":"Test2",
+            "icon":"settings",
+            "action":"",
+            "color":"",
+            "enable":true
+        },
+        {
+            "header":"prova",
+            "enable":true
+        }
+    ]
 }

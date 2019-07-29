@@ -1,7 +1,7 @@
 <template id="navigator" lang="html">
     <div>
         <navbar v-on:drawer="drawer=!drawer "></navbar>
-        <navdrawer :drawer="drawer" ></navdrawer>
+        <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" ></navdrawer>
         <v-card >fdfdf</v-card>
         <appfooter></appfooter>
    </div>
@@ -11,7 +11,8 @@
     module.exports = {
         data: function() {
             return {
-                drawer:true
+                drawer:true,
+                selection:0
             }
         },
         components: {

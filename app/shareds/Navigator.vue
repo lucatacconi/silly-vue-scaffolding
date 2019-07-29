@@ -1,6 +1,8 @@
 <template id="navigator" lang="html">
     <div>
-        <navbar></navbar>
+        <navbar v-on:drawer="drawer=!drawer "></navbar>
+        <navdrawer :drawer="drawer" ></navdrawer>
+        <v-card >fdfdf</v-card>
         <appfooter></appfooter>
    </div>
 </template>
@@ -9,11 +11,12 @@
     module.exports = {
         data: function() {
             return {
-
+                drawer:true
             }
         },
         components: {
             'navbar': httpVueLoader('../../app/shareds/NavBar.vue'),
+            'navdrawer': httpVueLoader('../../app/shareds/NavDrawer.vue'),
             'appfooter': httpVueLoader('../../app/shareds/Footer.vue')
         }
     }

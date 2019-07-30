@@ -1,8 +1,6 @@
 
 #compiled
-var/cache/
-var/compiles/
-var/logs/
+var/logs/*
 
 # Logs files
 *.log
@@ -18,5 +16,5 @@ var/logs/
 *.zip
 
 
-/vendor/
+/vendor/*
 composer.lock

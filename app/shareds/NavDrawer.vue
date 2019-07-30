@@ -12,21 +12,21 @@
             <template v-for="(item,i) in items">
                 <v-list-item
                     :key="i"
-                    v-if="item.header==undefined&&item.enable"
+                    v-if="item.header==undefined&&item.visible"
                     @click="launchEvent(item,i)"
                 >
                     <v-list-item-icon>
-                        <v-icon :color="item.color!='' ? item.color : 'black'">
+                        <v-icon :color="item.enable!='' ? item.color : 'red'">
                             {{item.icon}}
                         </v-icon>
                     </v-list-item-icon>
                     <v-list-item-title
-                        :class="item.color!='' ? item.color+'--text' : 'black--text'"
+                        :class="item.enable ? item.color+'--text' : 'red--text'"
                     >
                         {{item.title}}
                     </v-list-item-title>
                 </v-list-item>
-                <v-subheader v-else-if="item.enable" :key="i">{{item.header.toUpperCase()}}</v-subheader>
+                <v-subheader v-else-if="item.visible" :key="i">{{item.header.toUpperCase()}}</v-subheader>
             </template>
 
         </v-list>
@@ -54,7 +54,21 @@ module.exports = {
     },
     methods: {
         launchEvent:function(item,i){
-            this.$emit('select',i)
+            if(item.enable!=undefined&&item.enable){
+                if(item.action!="link"){
+                    this.$emit('select',i)
+                }
+
+                if(item.action=="link"){
+                    window.open(item.href,item.target)
+                }
+            }else{
+                Swal.fire({
+                    type: 'error',
+                    title: 'Item disabled',
+                    html: 'This item is disabled!'
+                })
+            }
         }
     },
     created:function() {

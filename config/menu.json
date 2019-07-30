@@ -4,19 +4,55 @@
             "title":"Test",
             "icon":"settings",
             "action":"",
-            "color":"",
+            "color":"black",
+            "visible":true,
             "enable":true
         },
         {
-            "title":"Test2",
+            "title":"Disable",
+            "icon":"settings",
+            "action":"link",
+            "href":"https://www.google.it",
+            "target":"_blank",
+            "color":"black",
+            "visible":true,
+            "enable":false
+        },
+        {
+            "title":"Link (new window)",
+            "icon":"settings",
+            "action":"link",
+            "href":"https://www.google.it",
+            "target":"_blank",
+            "color":"black",
+            "visible":true,
+            "enable":true
+        },
+        {
+            "title":"Link (current window)",
+            "icon":"settings",
+            "action":"link",
+            "href":"https://www.google.it",
+            "target":"_self",
+            "color":"black",
+            "visible":true,
+            "enable":true
+        },
+        {
+            "title":"Invisible",
             "icon":"settings",
             "action":"",
-            "color":"",
+            "color":"black",
+            "visible":false,
             "enable":true
         },
         {
-            "header":"prova",
-            "enable":true
+            "header":"header",
+            "visible":true
+        },
+        {
+            "header":"header invisible",
+            "visible":false
         }
     ]
 }

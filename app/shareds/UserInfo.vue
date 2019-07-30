@@ -5,17 +5,17 @@
     >
         <template v-slot:activator="{ on }">
         <v-btn icon v-on="on">
-            <v-icon>mdi-dots-vertical</v-icon>
+            <v-icon>account_circle</v-icon>
         </v-btn>
         </template>
 
         <v-list>
         <v-list-item
-            v-for="n in 5"
-            :key="n"
-            @click="() => {}"
+            v-for="(item,i) in items"
+            :key="i"
+            @click="click()"
         >
-            <v-list-item-title>Option {{ n }}</v-list-item-title>
+            <v-list-item-title>{{ item }}</v-list-item-title>
         </v-list-item>
         </v-list>
     </v-menu>
@@ -25,8 +25,21 @@
     module.exports = {
         data: function() {
             return {
+                items:[
+                ]
             }
-        }
+        },
+        methods: {
+            click:function(){
+                alert("click")
+            }
+        },
+        created() {
+            var info = Utils.parseJwt(localStorage.getItem('token'))
+            this.items.push('User: '+info.username)
+            this.items.push('Expire: '+moment(info.exp).format('DD/MM/YYYY HH:MM:SS'))
+            this.items.push('Logout')
+        },
     }
 </script>
 

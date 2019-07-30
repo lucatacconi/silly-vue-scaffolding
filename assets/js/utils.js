@@ -52,9 +52,9 @@ var Utils = {
         //If url start with /xxxx it means that api is internal
         if ( url.indexOf("https") == -1 && url.indexOf("http") == -1 ) {
             if(url.substr(0, 1) == '/'){
-                url = 'index.php' + url;
+                url = '../routes' + url;
             }else{
-                url = 'index.php' + '/' + url;
+                url = '../routes' + '/' + url;
             }
         }
 

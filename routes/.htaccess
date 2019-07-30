@@ -48,10 +48,8 @@ ServerSignature Off
 
 RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
-RewriteBase /public/
-
-RewriteCond %{REQUEST_FILENAME} !-d [OR]
+RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteRule "(^|/)\." - [F]
+RewriteRule . index.php [L]
 
 php_value always_populate_raw_post_data -1

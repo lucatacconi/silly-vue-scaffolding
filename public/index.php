@@ -51,9 +51,7 @@ $app = new \Slim\App($container);
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => getenv("JWT_SECRET"),
 
-    //Remove test api passthrow before production
-    "ignore" => ["/", "/auth/login","/test/*"],
-    // "ignore" => ["/", "/auth/login"],
+    "path" => ["/session", "/util"],
 
     "error" => function ($response, $arguments) {
         $data["status"] = "Authentication error";

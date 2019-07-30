@@ -73,7 +73,7 @@ var Utils = {
 
         //Security check
         call_config.headers = {};
-        if(typeof apikey == "undefined"){
+        if(typeof apikey != "undefined"){
             call_config.headers.Authorization = "Bearer " + apikey;
         }else{
             if(localStorage.getItem("token") != '' && localStorage.getItem("token") != null && localStorage.getItem("token") != 'undefined'){

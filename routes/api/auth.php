@@ -13,6 +13,9 @@ $app->group('/auth', function () use ($app) {
 
         $params = array_change_key_case($request->getParams(), CASE_UPPER);
 
+        if(empty($params["USERNAME"])) throw new Exception("ERROR - Parameter non found");
+        if(empty($params["PASSWORD"])) throw new Exception("ERROR - Parameter non found");
+
         $aACCOUNTs = $this->get('app_configs')["accounts"];
 
         $aACCOUNT = null;

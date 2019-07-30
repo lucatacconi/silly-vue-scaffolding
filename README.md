@@ -8,8 +8,6 @@ It's recommended that you use [Composer](https://getcomposer.org/) to install Si
 
 ```bash
 $ composer install 
-(ONLY IF "COMPOSER INSTALL" DOESN'T WORK: composer update)
-$ chmod -R 777 ./var/*
 ```
 
 ## License

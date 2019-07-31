@@ -12,9 +12,7 @@
 <script type="text/javascript">
     module.exports = {
         data: function() {
-            return {
-
-            }
+            return {}
         }
     }
 </script>

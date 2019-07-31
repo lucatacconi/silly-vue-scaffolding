@@ -16,4 +16,7 @@ $twig_config['cache'] = false;
 $loader = new \Twig\Loader\FilesystemLoader('../assets/templates');
 $twig = new \Twig\Environment($loader, $twig_config);
 
-echo $twig->render('index.html', []);
+$tpl_data = [];
+$tpl_data["app_title"] = getenv("APP_TITLE");
+
+echo $twig->render('index.html', $tpl_data);

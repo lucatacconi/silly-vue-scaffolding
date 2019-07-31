@@ -17,23 +17,7 @@
                 if(!localStorage.getItem("token")){
                     return false;
                 }else{
-                    if(!Utils.parseJwt(localStorage.getItem("token")).username ||
-                       !localStorage.getItem("accountData") ||
-                       Utils.parseJwt(localStorage.getItem("token")).username != JSON.parse(localStorage.getItem("accountData")).username){
-
-                        Swal.fire({
-                            type: 'error',
-                            title: 'Session expired',
-                            text: "Login needed again",
-                        }).then((result) => {
-                            localStorage.removeItem("token");
-                            localStorage.removeItem("accountData");
-                            window.location.href = "index.php";
-                            return;
-                        });
-                    }else{
-                        return true;
-                    }
+                    return true;
                 }
             }
         },
@@ -46,10 +30,7 @@
         methods: {
             checkSession: function(){
                 var self = this;
-                Utils.apiCall("get", "/session/check")
-                .then(function (response) {
-                    Utils.showLoadingOFF();
-                });
+                Utils.apiCall("get", "/auth/session/check");
             }
         },
         mounted: function() {

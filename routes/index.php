@@ -11,8 +11,7 @@ $dotenv->load();
 date_default_timezone_set(getenv("TIMEZONE"));
 
 
-$container = array();
-$container['settings'] = ['displayErrorDetails' => getenv("DISPLAY_SOAP_ERR")];
+$container_config = array();
 
 // Registering config parameters
 $config_path = "../config/";
@@ -20,9 +19,23 @@ foreach (glob($config_path."*.json") as $filename) {
     $config_content = file_get_contents($filename);
 
     if(!empty($config_content)){
-        $container["app_configs"][ str_replace(array($config_path, ".json"), "", $filename) ] = json_decode($config_content, true);
+        $container_config["app_configs"][ str_replace(array($config_path, ".json"), "", $filename) ] = json_decode($config_content, true);
     }
 }
+
+$container = new \Slim\Container($container_config);
+
+$container['errorHandler'] = function ($container) {
+    return function ($request, $response, $exception) use ($container) {
+        $data = [];
+        $data["status"] = "Engine error";
+        $data["message"] = $exception->getMessage();
+
+        return $response->withStatus(500)
+            ->withHeader('Content-Type', 'application/json')
+            ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+    };
+};
 
 
 //Starting Slim
@@ -32,11 +45,13 @@ $app = new \Slim\App($container);
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secret" => getenv("JWT_SECRET"),
 
-    "ignore" => ["/auth/login"],
+    "ignore" => ["/auth/login", "/test"],
 
     "error" => function ($response, $arguments) {
+        $data = [];
         $data["status"] = "Authentication error";
         $data["message"] = $arguments["message"];
+
         return $response
             ->withHeader("Content-Type", "application/json")
             ->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));

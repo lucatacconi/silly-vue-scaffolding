@@ -62,13 +62,6 @@ var Utils = {
         var call_config = {};
         call_config.method = method;
         call_config.url = url
-
-        // if(method == "get"){
-        //     config = {method: method, url: url, params: data};
-        // } else if(method == "post"){
-        //     config = {method: method, url: url, data: data};
-        // }
-
         call_config.params = parameters;
 
         //Security check
@@ -82,9 +75,7 @@ var Utils = {
             }
         }
 
-        return axios(call_config)
-        .catch(function (error) {
-            Utils.showLoadingOFF();
+        var result = axios(call_config).catch(function (error) {
 
             if(error.response.status == 401){
                 Swal.fire({
@@ -93,16 +84,20 @@ var Utils = {
                     text: "Login error or session expired",
                 }).then((result) => {
                     Utils.doLogoutAndGoHome();
-                });
+                }).catch(swal.noop);
             }else{
                 Swal.fire({
                     type: 'error',
-                    title: 'Engine error',
-                    text: error.response,
+                    title: error.response.data.status,
+                    text: error.response.data.message,
                 }).then((result) => {
-
-                }).catch(swal.noop);
+                    return;
+                })
+                .catch(swal.noop);
             }
-        })
+        });
+
+        Utils.showLoadingOFF();
+        return result;
     }
 };

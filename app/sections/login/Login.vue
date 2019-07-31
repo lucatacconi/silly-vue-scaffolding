@@ -76,7 +76,4 @@
 </script>
 
 <style>
-    .swal-modal {
-        font-family: Helvetica;
-    }
 </style>

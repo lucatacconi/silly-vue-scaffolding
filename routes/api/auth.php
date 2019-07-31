@@ -13,8 +13,8 @@ $app->group('/auth', function () use ($app) {
 
         $params = array_change_key_case($request->getParams(), CASE_UPPER);
 
-        if(empty($params["USERNAME"])) throw new Exception("ERROR - Parameter non found");
-        if(empty($params["PASSWORD"])) throw new Exception("ERROR - Parameter non found");
+        if(empty($params["USERNAME"])) throw new Exception("ERROR - Parameter non found (1)");
+        if(empty($params["PASSWORD"])) throw new Exception("ERROR - Parameter non found (2)");
 
         $aACCOUNTs = $this->get('app_configs')["accounts"];
 
@@ -84,6 +84,13 @@ $app->group('/auth', function () use ($app) {
                 ->withHeader("Content-Type", "application/json")
                 ->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
         }
+    });
+
+    $app->get('/session/check', function ($request, $response, $args) {
+
+        $response->getBody()->write("CONN OK");
+        return $response;
+
     });
 
 });

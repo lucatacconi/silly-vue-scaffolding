@@ -29,6 +29,38 @@
                 <v-subheader v-else-if="item.visible" :key="i">{{item.header.toUpperCase()}}</v-subheader>
             </template>
 
+            <v-divider></v-divider>
+
+            <v-list-item @click="NavTo('app1')">
+                <v-list-item-icon>
+                <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                <v-list-item-title>App1</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item @click="NavTo('app2')">
+                <v-list-item-icon>
+                <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                <v-list-item-title>App2</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-list-item @click="NavTo('app3')">
+                <v-list-item-icon>
+                <v-icon>mdi-view-dashboard</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                <v-list-item-title>App3</v-list-item-title>
+                </v-list-item-content>
+            </v-list-item>
+
         </v-list>
     </v-navigation-drawer>
 </template>
@@ -53,6 +85,12 @@ module.exports = {
         }
     },
     methods: {
+
+        NavTo:function(direzione){
+            this.$emit('navto', direzione);
+        },
+
+
         launchEvent:function(item,i){
             if(item.enable!=undefined&&item.enable){
                 if(item.action!="link"){

@@ -49,13 +49,23 @@
 
             Vue.use(VeeValidate, { locale: 'en' });
             Vue.use(Vuetify);
+            Vue.use(VueRouter)
             Vue.config.productionTip = false;
 
-            var Edge = new Vue({
+            const router = new VueRouter({
+                routes : [
+                    { path: '/app1', component: httpVueLoader('../app/sections/test/App1.vue') },
+                    { path: '/app2', component: httpVueLoader('../app/sections/test/App2.vue') },
+                    // { path: '/app3', component: httpVueLoader('../app/sections/test/App3.vue') },
+                ]
+            });
+
+            const Edge = new Vue({
                 el: '#edge',
                 data:{
                     showloading: false
                 },
+                router,
                 vuetify: new Vuetify(),
                 components: {
                     'container': httpVueLoader('../app/shareds/Container.vue')

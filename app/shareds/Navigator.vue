@@ -1,7 +1,7 @@
 <template id="navigator" lang="html">
     <div>
         <navbar v-on:drawer="drawer=!drawer "></navbar>
-        <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" ></navdrawer>
+        <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" v-on:navto="test($event)"    ></navdrawer>
         <!-- <v-card >fdfdf</v-card> -->
 
 
@@ -42,18 +42,27 @@
             }
         },
 
-        router: new VueRouter({
-            routes : [
-                { path: '/app1', component: httpVueLoader('../../app/sections/test/App1.vue') },
-                { path: '/app2', component: httpVueLoader('../../app/sections/test/App2.vue') },
-                { path: '/app3', component: httpVueLoader('../../app/sections/test/App3.vue') },
-            ]
-        }),
+        mounted: function(){
+            console.log(router);
+
+            router.addRoutes([
+                { path: '/app3', component: httpVueLoader('../../app/sections/test/App3.vue') }
+            ])
+        },
 
         components: {
             'navbar': httpVueLoader('../../app/shareds/NavBar.vue'),
             'navdrawer': httpVueLoader('../../app/shareds/NavDrawer.vue'),
             'appfooter': httpVueLoader('../../app/shareds/Footer.vue')
+        },
+
+        methods: {
+            test: function(direzione) {
+                alert(direzione);
+                console.log(router);
+
+                router.push(direzione);
+            }
         }
     }
 </script>

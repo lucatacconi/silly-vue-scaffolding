@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <h1>App1</h1>
-    </div>
+    <v-card ><h1>App1</h1></v-card>
 </template>
 
 <script>
@@ -14,5 +12,4 @@
 </script>
 
 <style scoped>
-
 </style>

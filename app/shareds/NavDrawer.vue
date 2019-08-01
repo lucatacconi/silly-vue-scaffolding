@@ -51,7 +51,7 @@
                 </v-list-item-content>
             </v-list-item>
 
-            <v-list-item @click="NavTo('app3')">
+            <v-list-item @click="$router.push('app3')">
                 <v-list-item-icon>
                 <v-icon>mdi-view-dashboard</v-icon>
                 </v-list-item-icon>
@@ -87,7 +87,8 @@ module.exports = {
     methods: {
 
         NavTo:function(direzione){
-            this.$emit('navto', direzione);
+            router.push(direzione);
+            //this.$emit('navto', direzione);
         },
 
 

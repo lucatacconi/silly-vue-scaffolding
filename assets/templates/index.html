@@ -52,13 +52,7 @@
             Vue.use(VueRouter)
             Vue.config.productionTip = false;
 
-            const router = new VueRouter({
-                routes : [
-                    { path: '/app1', component: httpVueLoader('../app/sections/test/App1.vue') },
-                    { path: '/app2', component: httpVueLoader('../app/sections/test/App2.vue') },
-                    // { path: '/app3', component: httpVueLoader('../app/sections/test/App3.vue') },
-                ]
-            });
+            const router = new VueRouter();
 
             const Edge = new Vue({
                 el: '#edge',

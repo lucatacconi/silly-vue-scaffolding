@@ -26,12 +26,41 @@
 
         mounted: function(){
             console.log(router);
+            var temp=[
+                {
+                    path:"/app1",
+                    component:"../../app/sections/test/App1.vue"
+                },
+                {
+                    path:"/app2",
+                    component:"../../app/sections/test/App2.vue"
+                },
+                {
+                    path:"/app3",
+                    component:"../../app/sections/test/App3.vue"
+                }
+            ]
+            var routes=[]
+            for(var i=0;i<temp.length;i++){
+                var t={}
+                t={
+                    path:temp[i].path,
+                    component: httpVueLoader(temp[i].component)
+                }
+                routes.push(t)
+                // router.addRoutes([
+                //     { path: temp[i].path, component: httpVueLoader(temp[i].component) },
+                // ])
+            }
 
-            router.addRoutes([
-                { path: '/app1', component: httpVueLoader('../../app/sections/test/App1.vue') },
-                { path: '/app2', component: httpVueLoader('../../app/sections/test/App2.vue') },
-                { path: '/app3', component: httpVueLoader('../../app/sections/test/App3.vue') }
-            ])
+            router.addRoutes(routes)
+
+            // router.addRoutes([
+            //     { path: '/app1', component: httpVueLoader('../../app/sections/test/App1.vue') },
+            // ])
+            // router.addRoutes([
+            //     { path: '/app3', component: httpVueLoader('../../app/sections/test/App3.vue') }
+            // ])
         },
 
         components: {

@@ -27,8 +27,8 @@ $app->group('/auth', function () use ($app) {
 
         //Account status check
         if(!empty($aACCOUNT)){
-            if(!empty($aACCOUNT["status"])){
-                if($aACCOUNT["status"] != 'A'){
+            if(!empty($aACCOUNT["active"])){
+                if($aACCOUNT["active"] != 'Y'){
                     unset($aACCOUNT);
                 }
             }
@@ -53,8 +53,17 @@ $app->group('/auth', function () use ($app) {
 
         }else{
 
+            //Setting session dueration
+            if(!empty($aACCOUNT["customSessionDuration"])){
+                $duration = $aACCOUNT["customSessionDuration"];
+            }else if(!empty(getenv("SESSION_DURATION"))){
+                $duration = getenv("SESSION_DURATION");
+            }else{
+                $duration = "2 hours";
+            }
+
             $now = new DateTime();
-            $future = new DateTime("now +2 hours");
+            $future = new DateTime("now +$duration");
             $server = $request->getServerParams();
             $jti = (new Base62)->encode(random_bytes(16));
 

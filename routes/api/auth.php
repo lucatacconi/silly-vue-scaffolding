@@ -72,7 +72,8 @@ $app->group('/auth', function () use ($app) {
                 "exp" => $future->getTimeStamp(),
                 "jti" => $jti,
                 "username" => $params["USERNAME"],
-                "name" => $aACCOUNT["name"]
+                "name" => $aACCOUNT["name"],
+                "userType" => !empty($aACCOUNT["userType"]) ? $aACCOUNT["userType"] : ''
             ];
 
             $secret = getenv("JWT_SECRET");
@@ -82,7 +83,8 @@ $app->group('/auth', function () use ($app) {
             $aACCOUNT_basic_data = [];
             $aACCOUNT_basic_data["username"] = $aACCOUNT["username"];
             $aACCOUNT_basic_data["name"] = $aACCOUNT["name"];
-            $aACCOUNT_basic_data["mail"] = $aACCOUNT["mail"];
+            $aACCOUNT_basic_data["userType"] = !empty($aACCOUNT["userType"]) ? $aACCOUNT["userType"] : '';
+            $aACCOUNT_basic_data["email"] = !empty($aACCOUNT["email"]) ? $aACCOUNT["email"] : '';
             $aACCOUNT_basic_data["expireDate"] = $aACCOUNT["expireDate"];
 
             $data["token"] = $token;

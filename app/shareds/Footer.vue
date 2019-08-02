@@ -1,6 +1,6 @@
 <template id="appfooter" lang="html">
     <v-footer
-      absolute
+      app inset
       dark
       color="blue-grey"
     >

@@ -3,13 +3,15 @@
         <navbar v-on:drawer="drawer=!drawer "></navbar>
         <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" v-on:navto="test($event)"></navdrawer>
 
-        <v-container fluid fill-height>
-            <v-layout>
-                <v-flex>
-                    <router-view></router-view>
-                </v-flex>
-            </v-layout>
-        </v-container>
+        <v-content>
+            <v-container fluid fill-height>
+                <v-layout>
+                    <v-flex>
+                        <router-view></router-view>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
 
         <appfooter></appfooter>
    </div>

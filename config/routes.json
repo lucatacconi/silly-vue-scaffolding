@@ -1,0 +1,16 @@
+{
+    "routes":[
+        {
+            "path":"/app1",
+            "component":"../../app/sections/test/App1.vue"
+        },
+        {
+            "path":"/app2",
+            "component":"../../app/sections/test/App2.vue"
+        },
+        {
+            "path":"/app3",
+            "component":"../../app/sections/test/App3.vue"
+        }
+    ]
+}

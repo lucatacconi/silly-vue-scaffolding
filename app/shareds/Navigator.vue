@@ -53,14 +53,26 @@
                 // ])
             }
 
-            router.addRoutes(routes)
-
-            // router.addRoutes([
-            //     { path: '/app1', component: httpVueLoader('../../app/sections/test/App1.vue') },
-            // ])
-            // router.addRoutes([
-            //     { path: '/app3', component: httpVueLoader('../../app/sections/test/App3.vue') }
-            // ])
+            var self=this
+            Utils.apiCall("get", "/util/routes")
+            .then(function (response) {
+                console.log(response)
+                if(response.statusText=="OK"){
+                    routes=[]
+                    console.log(response.data.routes)
+                    for(var i=0;i<response.data.routes.length;i++){
+                        self.$router.addRoutes([
+                            { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component) },
+                        ])
+                    }
+                }else{
+                    Swal.fire({
+                        type: 'error',
+                        title: 'Error routes api',
+                        html: 'Something went wrong!'
+                    })
+                }
+            })
         },
 
         components: {

@@ -35,7 +35,7 @@
         },
         mounted: function() {
             if(this.granted){
-                this.checkSession();
+                //this.checkSession();
             }
         }
     }

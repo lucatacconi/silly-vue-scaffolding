@@ -62,7 +62,12 @@
 
                 this.$validator.validateAll('login-area').then((result) =>{
                     if (result) {
-                        Utils.apiCall("post", "/auth/login", self.credentials)
+
+                        var config = {
+                            hideLoading: false
+                        }
+
+                        Utils.apiCall("post", "/auth/login", self.credentials, config)
                         .then(function (response) {
                             localStorage.setItem("token", response.data.token);
                             localStorage.setItem("accountData", response.data.accountData);

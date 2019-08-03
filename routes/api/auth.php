@@ -43,6 +43,8 @@ $app->group('/auth', function () use ($app) {
             }
         }
 
+        //sleep(10);
+
         if(empty($aACCOUNT)){
 
             $data = [];

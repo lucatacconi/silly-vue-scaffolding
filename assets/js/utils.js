@@ -19,10 +19,10 @@ var Utils = {
         return JSON.parse(jsonPayload);
     },
 
-    showLoadingON: function () {
+    showLoading: function () {
         Edge.showloading = true;
     },
-    showLoadingOFF: function () {
+    hideLoading: function () {
         Edge.showloading = false;
     },
 
@@ -37,16 +37,21 @@ var Utils = {
         return;
     },
 
-    apiCall: function (method, url, parameters, apikey) {
+    apiCall: function (method, url, parameters, config) {
 
         if (!method || !url) {
             console.error('Function apiCall missing arguments');
             return;
         }
 
-        if(typeof parameters == "undefined"){ parameters = null; }
+        if(typeof parameters === "undefined"){ parameters = null; }
+        if(typeof config === "undefined"){ config = null; }
 
-        Utils.showLoadingON();
+
+        if(!(config != null && typeof config.showLoading !== "undefined" && config.showLoading == false)){
+            Utils.showLoading();
+        }
+
 
         //If url start with http or https I'll use url to call api. Api called is external
         //If url start with /xxxx it means that api is internal
@@ -66,8 +71,8 @@ var Utils = {
 
         //Security check
         call_config.headers = {};
-        if(typeof apikey != "undefined"){
-            call_config.headers.Authorization = "Bearer " + apikey;
+        if(config != null && typeof config.apikey !== "undefined"){
+            call_config.headers.Authorization = "Bearer " + config.apikey;
         }else{
             if(localStorage.getItem("token") != '' && localStorage.getItem("token") != null && localStorage.getItem("token") != 'undefined'){
                 apikey = localStorage.getItem("token");
@@ -75,7 +80,22 @@ var Utils = {
             }
         }
 
-        var result = axios(call_config).catch(function (error) {
+        // call_config.transformResponse = [function (data) {
+        //     Utils.hideLoading();
+        //     return JSON.parse(data);
+        // }];
+
+        if(!(config != null && typeof config.hideLoading !== "undefined" && config.hideLoading == false)){
+            axios.interceptors.response.use(function (response) {
+                Utils.hideLoading();
+                return response;
+            }, function (error) {
+                // Do something with response error
+                return Promise.reject(error);
+            });
+        }
+
+        return axios(call_config).catch(function (error) {
 
             if(error.response.status == 401){
                 Swal.fire({
@@ -96,8 +116,5 @@ var Utils = {
                 .catch(swal.noop);
             }
         });
-
-        Utils.showLoadingOFF();
-        return result;
     }
 };

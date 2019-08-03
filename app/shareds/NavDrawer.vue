@@ -114,7 +114,7 @@ module.exports = {
         var self=this
         Utils.apiCall("get", "/util/menu")
         .then(function (response) {
-            Utils.showLoadingOFF();
+            // Utils.showLoadingOFF();
             if(response.statusText=="OK"){
                 self.items=response.data.menu
                 self.items[0].color="blue"

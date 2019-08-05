@@ -1,5 +1,5 @@
 <template id="navigator" lang="html">
-    <div>
+    <!-- <div> -->
         <navbar v-on:drawer="drawer=!drawer "></navbar>
         <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" v-on:navto="test($event)"></navdrawer>
 
@@ -14,7 +14,7 @@
         </v-content>
 
         <appfooter></appfooter>
-   </div>
+   <!-- </div> -->
 </template>
 
 <script type="text/javascript">

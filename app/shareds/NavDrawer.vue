@@ -7,6 +7,9 @@
         >
             <v-list nav dense>
                 <template v-for="item in menu_items">
+
+                    <!-- <v-divider></v-divider> -->
+
                     <v-list-group
                         v-if="item.subitems && item.subitems.length > 0 && item.layout.visible"
                         v-model="item.layout.opened"

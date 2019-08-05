@@ -1,0 +1,189 @@
+{
+    "menu_items" :
+    [
+        {
+            "title": "Configurazioni sistema",
+            "subtitle": "Configurazioni sistema",
+            "allowed": ["admin","test1","test2"],
+            "layout": {
+                "icon": "settings",
+                "iconClose": "settings",
+                "opened":false,
+                "visible":true,
+                "class": false
+            },
+            "subitems":[
+                {
+                    "title": "Anno accademico",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "opened": false,
+                        "visible": true,
+                        "class": false
+                    }
+                }
+            ]
+        },
+        {
+            "title": "Configurazioni sistema",
+            "subtitle": "Configurazioni sistema",
+            "allowed":["admin","test1","test2"],
+
+            "destination":{},
+            "controller":{},
+            "action":{},
+
+            "layout":{
+                "icon":"contacts",
+                "iconClose":"contacts",
+                "opened":false,
+                "visible":true,
+                "class": false
+            }
+        },
+
+
+
+
+
+
+
+        {
+            "item": "Configurazioni sistema",
+            "type": "submenu",
+            "destination":{},
+            "controller":{},
+            "action":{},
+            "allowed":["admin","test1","test2"],
+            "layout":{
+                "icon":"settings",
+                "iconClose":"settings",
+                "opened":false,
+                "visible":true
+            },
+            "subitems":[
+                {
+                    "item": "Anno accademico",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"calendar_today",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                },
+                {
+                    "item": "Configuratore",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"tune",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                },
+                {
+                    "item": "Gestione riserve",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"local_hotel",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                },
+                {
+                    "item": "Autorizzazione",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"description",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                },
+                {
+                    "item": "Autorizzazione dettaglio",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"dashboard",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                },
+                {
+                    "item": "Autorizzazione regole",
+                    "type": "element",
+                    "destination":{},
+                    "controller":{},
+                    "action":{},
+                    "allowed":["admin","test1","test2"],
+                    "layout":{
+                        "icon":"credit_card",
+                        "iconClose":"",
+                        "opened":false,
+                        "visible":true
+                    }
+                }
+            ]
+        },
+        {
+            "item": "Contacts",
+            "type": "element",
+            "destination":{},
+            "controller":{},
+            "action":{},
+            "allowed":["admin","test1","test2"],
+            "layout":{
+                "icon":"contacts",
+                "iconClose":"contacts",
+                "opened":false,
+                "visible":true
+            },
+            "subitems": false
+        },
+        {
+            "item": "Batch",
+            "type": "element",
+            "destination":{},
+            "controller":{},
+            "action":{},
+            "allowed":["admin","test1","test2"],
+            "layout":{
+                "icon":"contacts",
+                "iconClose":"contacts",
+                "opened":false,
+                "visible":true
+            },
+            "subitems": false
+        }
+    ]
+}

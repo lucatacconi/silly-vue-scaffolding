@@ -1,68 +1,128 @@
 <template>
-    <v-navigation-drawer
-        v-model="drawer"
-        app
-        mobile-break-point="0"
-    >
-        <v-list
-            nav
-            dense
+    <div>
+        <v-navigation-drawer
+            v-model="drawer"
+            app
+            mobile-break-point="0"
         >
-
-            <template v-for="(item,i) in items">
-                <v-list-item
-                    :key="i"
-                    v-if="item.header==undefined&&item.visible"
-                    @click="launchEvent(item,i)"
-                >
-                    <v-list-item-icon>
-                        <v-icon :color="item.enable!='' ? item.color : 'red'">
-                            {{item.icon}}
-                        </v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title
-                        :class="item.enable ? item.color+'--text' : 'red--text'"
+            <v-list nav dense>
+                <template v-for="item in menu_items">
+                    <v-list-group
+                        v-if="item.subitems && item.subitems.length > 0 && item.layout.visible"
+                        v-model="item.layout.opened"
+                        :key="item.item"
+                        :prepend-icon="item.layout.opened ? item.layout.icon : item.layout.iconClose"
                     >
-                        {{item.title}}
-                    </v-list-item-title>
+                        <v-list-tile slot="activator">
+                            <v-list-tile-content>
+                                <v-list-tile-title>
+                                    {{ item.item }}
+                                </v-list-tile-title>
+                                <v-list-item-subtitle v-if="item.subtext">
+                                    {{ item.subtext }}
+                                </v-list-item-subtitle>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                        <v-list-tile
+                            v-for="(child, i) in item.subitems"
+                            :key="i"
+                            v-if="item.layout.visible"
+                            @click.native="test1()"
+                        >
+                            <v-list-tile-action v-if="child.layout.icon">
+                                <v-icon>{{ child.layout.icon }}</v-icon>
+                            </v-list-tile-action>
+                            <v-list-tile-content>
+                                <v-list-tile-title>
+                                    {{ child.item }}
+                                </v-list-tile-title>
+                                <v-list-item-subtitle v-if="child.subtext">
+                                    {{ child.subtext }}
+                                </v-list-item-subtitle>
+                            </v-list-tile-content>
+                        </v-list-tile>
+                    </v-list-group>
+
+                    <v-list-tile
+                        v-else-if="!item.subitems && item.layout.visible"
+                        :key="item.item"
+                        @click.native="test2()"
+                    >
+                        <v-list-tile-action>
+                            <v-icon>{{ item.layout.icon }}</v-icon>
+                        </v-list-tile-action>
+                        <v-list-tile-content>
+                            <v-list-tile-title>
+                                {{ item.item }}
+                            </v-list-tile-title>
+                        </v-list-tile-content>
+                    </v-list-tile>
+                </template>
+            </v-list>
+
+
+
+
+            <!-- <v-list
+                nav
+                dense
+            >
+
+                <template v-for="(item,i) in items">
+                    <v-list-item
+                        :key="i"
+                        v-if="item.header==undefined&&item.visible"
+                        @click="launchEvent(item,i)"
+                    >
+                        <v-list-item-icon>
+                            <v-icon :color="item.enable!='' ? item.color : 'red'">
+                                {{item.icon}}
+                            </v-icon>
+                        </v-list-item-icon>
+                        <v-list-item-title
+                            :class="item.enable ? item.color+'--text' : 'red--text'"
+                        >
+                            {{item.title}}
+                        </v-list-item-title>
+                    </v-list-item>
+                    <v-subheader v-else-if="item.visible" :key="i">{{item.header.toUpperCase()}}</v-subheader>
+                </template>
+
+                <v-divider></v-divider>
+
+                <v-list-item @click="NavTo('app1')">
+                    <v-list-item-icon>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                    </v-list-item-icon>
+
+                    <v-list-item-content>
+                    <v-list-item-title>App1</v-list-item-title>
+                    </v-list-item-content>
                 </v-list-item>
-                <v-subheader v-else-if="item.visible" :key="i">{{item.header.toUpperCase()}}</v-subheader>
-            </template>
 
-            <v-divider></v-divider>
+                <v-list-item @click="NavTo('app2')">
+                    <v-list-item-icon>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                    </v-list-item-icon>
 
-            <v-list-item @click="NavTo('app1')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
+                    <v-list-item-content>
+                    <v-list-item-title>App2</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
 
-                <v-list-item-content>
-                <v-list-item-title>App1</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
+                <v-list-item @click="$router.push('app3')">
+                    <v-list-item-icon>
+                    <v-icon>mdi-view-dashboard</v-icon>
+                    </v-list-item-icon>
 
-            <v-list-item @click="NavTo('app2')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
+                    <v-list-item-content>
+                    <v-list-item-title>App3</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
 
-                <v-list-item-content>
-                <v-list-item-title>App2</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-            <v-list-item @click="$router.push('app3')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                <v-list-item-title>App3</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-        </v-list>
-    </v-navigation-drawer>
+            </v-list> -->
+        </v-navigation-drawer>
+    <div>
 </template>
 
 <script>

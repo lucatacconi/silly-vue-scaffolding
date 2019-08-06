@@ -90,8 +90,8 @@ module.exports = {
     methods: {
 
 
-        test:function(messaggio){
-            alert(messaggio);
+        test:function(message){
+            alert(message);
             //this.$emit('navto', direzione);
         },
 

@@ -1,7 +1,7 @@
 <template id="navigator" lang="html">
-    <!-- <div> -->
+    <div>
         <navbar v-on:drawer="drawer=!drawer "></navbar>
-        <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" v-on:navto="test($event)"></navdrawer>
+        <navdrawer :drawer="drawer" v-on:select="selection=$event" :navmap="navmap" :selection="selection"></navdrawer>
 
         <v-content>
             <v-container fluid fill-height>
@@ -14,67 +14,43 @@
         </v-content>
 
         <appfooter></appfooter>
-   <!-- </div> -->
+   </div>
 </template>
 
 <script type="text/javascript">
     module.exports = {
         data: function() {
             return {
-                drawer:true,
+                drawer: "true",
+                routes: [],
+                navmap: [],
                 selection:0
             }
         },
 
         mounted: function(){
-            // console.log(router);
-            // var temp=[
-            //     {
-            //         path:"/app1",
-            //         component:"../../app/sections/test/App1.vue"
-            //     },
-            //     {
-            //         path:"/app2",
-            //         component:"../../app/sections/test/App2.vue"
-            //     },
-            //     {
-            //         path:"/app3",
-            //         component:"../../app/sections/test/App3.vue"
-            //     }
-            // ]
-            // var routes=[]
-            // for(var i=0;i<temp.length;i++){
-            //     var t={}
-            //     t={
-            //         path:temp[i].path,
-            //         component: httpVueLoader(temp[i].component)
-            //     }
-            //     routes.push(t)
-            //     // router.addRoutes([
-            //     //     { path: temp[i].path, component: httpVueLoader(temp[i].component) },
-            //     // ])
-            // }
 
-            // var self=this
-            // Utils.apiCall("get", "/util/routes")
-            // .then(function (response) {
-            //     console.log(response)
-            //     if(response.statusText=="OK"){
-            //         routes=[]
-            //         console.log(response.data.routes)
-            //         for(var i=0;i<response.data.routes.length;i++){
-            //             self.$router.addRoutes([
-            //                 { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component) },
-            //             ])
-            //         }
-            //     }else{
-            //         Swal.fire({
-            //             type: 'error',
-            //             title: 'Error routes api',
-            //             html: 'Something went wrong!'
-            //         })
-            //     }
-            // })
+            self = this;
+
+            // this.navmap = 1;
+
+            // setTimeout(function(){ self.navmap = 1 }, 500);
+
+            Utils.apiCall("get", "/navigation/")
+            .then(function (response) {
+
+                if (typeof response.data.routes !== 'undefined' && response.data.routes.length > 0) {
+                    for(var i=0; i<response.data.routes.length; i++){
+                        self.$router.addRoutes([
+                            { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component) },
+                        ])
+                    }
+                }
+
+                if (typeof response.data.navMap !== 'undefined' && response.data.navMap.length > 0) {
+                    self.navmap = response.data.navMap;
+                }
+            });
         },
 
         components: {
@@ -84,12 +60,6 @@
         },
 
         methods: {
-            test: function(direzione) {
-                alert(direzione);
-                console.log(router);
-
-                router.push(direzione);
-            }
         }
     }
 </script>

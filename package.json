@@ -1,0 +1,20 @@
+{
+    "name": "silly-vue-scaffolding",
+    "version": "0.4.0",
+    "description": "Scafflodind for simple single page vue applications without build proces",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lucatacconi/silly-vue-scaffolding.git"
+    },
+    "keywords": [],
+    "author": "Luca Tacconi, Emanuele Marchesotti",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lucatacconi/silly-vue-scaffolding/issues"
+    },
+    "homepage": "https://github.com/lucatacconi/silly-vue-scaffolding#readme"
+}

@@ -11,9 +11,12 @@
                         v-if="navItem.type == 'SUBM'"
                         :value="navItem.layout.expanded ? navItem.layout.expanded : null"
                         :key="navItem.id"
-                        :prepend-icon="navItem.layout.expanded ? navItem.layout.iconExpanded : navItem.layout.icon"
                     >
                         <template v-slot:activator>
+                            <v-list-item-icon>
+                                <v-icon>{{ navItem.layout.icon }}</v-icon>
+                            </v-list-item-icon>
+
                             <v-list-item-content>
                                 <v-list-item-title>
                                     {{ navItem.title }}
@@ -34,6 +37,10 @@
                             :color="subItem.layout.color ? subItem.layout.color : null"
                             :class="subItem.layout.class ? subItem.layout.class : null"
                         >
+                            <v-list-item-icon>
+                                <v-icon>{{ subItem.layout.icon }}</v-icon>
+                            </v-list-item-icon>
+
                             <v-list-item-content>
                                 <v-list-item-title>
                                     {{ subItem.title }}
@@ -115,6 +122,7 @@ module.exports = {
         }
     },
     mounted:function() {
+
     }
 }
 </script>

@@ -18,6 +18,7 @@ $app->group('/navigation', function () use ($app) {
         $data = [];
         $navigation_map = [];
         $routes = [];
+        $bootstrapPage = '';
 
         if(!empty($jwt_payload["userType"])){
 
@@ -114,9 +115,27 @@ $app->group('/navigation', function () use ($app) {
                     }
                 }
             }
+
+            if( !empty($app_config["navigation"]) && !empty($app_config["navigation"]["bootstrapPage"])){
+                $bootstrapPage = $app_config["navigation"]["bootstrapPage"];
+            }
         }
 
+        $routeFounded = false;
+        foreach($routes as $row_cnt => $row_data){
+            if($bootstrapPage == $row_data["path"]){
+                $routeFounded = true;
+                break;
+            }
+        }
+        if(!$routeFounded){
+            $bootstrapPage = false;
+        }
+
+
+
         $data["navMap"] = $navigation_map;
+        $data["bootstrapPage"] = $bootstrapPage;
         $data["routes"] = $routes;
 
         return $response->withStatus(200)

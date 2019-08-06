@@ -50,6 +50,10 @@
                 if (typeof response.data.navMap !== 'undefined' && response.data.navMap.length > 0) {
                     self.navmap = response.data.navMap;
                 }
+
+                if (typeof response.data.bootstrapPage !== 'undefined' && response.data.bootstrapPage != '') {
+                    router.push(response.data.bootstrapPage);
+                }
             });
         },
 

@@ -68,7 +68,7 @@
                                 {{ navItem.subtitle }}
                             </v-list-item-subtitle>
                         </v-list-item-content>
-                    </v-list-tile>
+                    </v-list-item>
                 </template>
             </v-list>
         </v-navigation-drawer>

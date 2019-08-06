@@ -132,7 +132,7 @@
 
         {
             "title": "Http blank",
-            "subtitle": "",
+            "subtitle": "Link to address",
             "allowed":["admin","test1","test2"],
             "visible": true,
 
@@ -150,7 +150,7 @@
         },
         {
             "title": "Http self",
-            "subtitle": "",
+            "subtitle": "Link to address",
             "allowed":["admin","test1","test2"],
             "visible": true,
 

@@ -5,58 +5,57 @@
             app
             mobile-break-point="0"
         >
-            <v-list nav dense>
-                <template v-for="item in navMap">
-                    <!-- <v-list-group
-                        v-if="item.subitems && item.subitems.length > 0 && item.layout.visible"
-                        v-model="item.layout.opened"
-                        :key="item.item"
-                        :prepend-icon="item.layout.opened ? item.layout.icon : item.layout.iconClose"
+            <v-list dense>
+                <template v-for="navItem in navMap">
+                    <v-list-group
+                        v-if="navItem.type == 'SUBM'"
+                        value="navItem.layout.expanded"
+                        :key="navItem.id"
+                        :prepend-icon="navItem.layout.expanded ? navItem.layout.iconExpanded : navItem.layout.icon"
                     >
-                        <v-list-tile slot="activator">
-                            <v-list-tile-content>
-                                <v-list-tile-title>
-                                    {{ item.item }}
-                                </v-list-tile-title>
-                                <v-list-item-subtitle v-if="item.subtext">
-                                    {{ item.subtext }}
+                        <template v-slot:activator>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ navItem.title }}
+                                </v-list-item-title>
+                                <v-list-item-subtitle v-if="navItem.subtitle">
+                                    {{ navItem.subtitle }}
                                 </v-list-item-subtitle>
-                            </v-list-tile-content>
-                        </v-list-tile>
-                        <v-list-tile
-                            v-for="(child, i) in item.subitems"
-                            :key="i"
-                            v-if="item.layout.visible"
-                            @click.native="test1()"
+                            </v-list-item-content>
+                        </template>
+
+                        <v-list-item
+                            v-for="subItem in navItem.subMenuItems"
+                            :key="subItem.title"
+                            @click="test('Test sub')"
                         >
-                            <v-list-tile-action v-if="child.layout.icon">
-                                <v-icon>{{ child.layout.icon }}</v-icon>
-                            </v-list-tile-action>
-                            <v-list-tile-content>
-                                <v-list-tile-title>
-                                    {{ child.item }}
-                                </v-list-tile-title>
-                                <v-list-item-subtitle v-if="child.subtext">
-                                    {{ child.subtext }}
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ subItem.title }}
+                                </v-list-item-title>
+                                <v-list-item-subtitle v-if="subItem.subtitle">
+                                    {{ subItem.subtitle }}
                                 </v-list-item-subtitle>
-                            </v-list-tile-content>
-                        </v-list-tile>
+                            </v-list-item-content>
+                        </v-list-item>
                     </v-list-group>
 
-                    <v-list-tile
-                        v-else-if="!item.subitems && item.layout.visible"
-                        :key="item.item"
-                        @click.native="test2()"
-                    >
-                        <v-list-tile-action>
-                            <v-icon>{{ item.layout.icon }}</v-icon>
-                        </v-list-tile-action>
-                        <v-list-tile-content>
-                            <v-list-tile-title>
-                                {{ item.item }}
-                            </v-list-tile-title>
-                        </v-list-tile-content>
-                    </v-list-tile> -->
+                    <v-divider v-if="navItem.type == 'DIV'" :key="navItem.id"></v-divider>
+
+                    <v-list-item v-else-if="navItem.type == 'ELM'" :key="navItem.id" @click="test('Test el')">
+                        <v-list-item-icon>
+                            <v-icon>{{ navItem.layout.icon }}</v-icon>
+                        </v-list-item-icon>
+
+                        <v-list-item-content>
+                            <v-list-item-title>
+                                {{ navItem.title }}
+                            </v-list-item-title>
+                            <v-list-item-subtitle v-if="navItem.subtitle">
+                                {{ navItem.subtitle }}
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-tile>
                 </template>
             </v-list>
         </v-navigation-drawer>
@@ -89,6 +88,13 @@ module.exports = {
         // }
     },
     methods: {
+
+
+        test:function(messaggio){
+            alert(messaggio);
+            //this.$emit('navto', direzione);
+        },
+
 
         // NavTo:function(direzione){
         //     router.push(direzione);

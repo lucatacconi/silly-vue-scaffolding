@@ -5,7 +5,7 @@
             app
             mobile-break-point="0"
         >
-            <v-list dense>
+            <v-list dense nav >
                 <template v-for="navItem in navMap">
                     <v-list-group
                         v-if="navItem.type == 'SUBM'"
@@ -25,6 +25,8 @@
                         </template>
 
                         <v-list-item
+                            dense
+
                             v-for="subItem in navItem.subMenuItems"
                             :key="subItem.title"
                             @click="launchEvent(subItem)"
@@ -46,6 +48,7 @@
                     <v-divider v-if="navItem.type == 'DIV'" :key="navItem.id"></v-divider>
 
                     <v-list-item
+                        dense
                         v-else-if="navItem.type == 'ELM'"
                         :key="navItem.id"
                         @click="launchEvent(navItem)"

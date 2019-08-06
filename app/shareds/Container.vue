@@ -30,12 +30,20 @@
         methods: {
             checkSession: function(){
                 var self = this;
-                Utils.apiCall("get", "/auth/session/check");
+
+                var config = {
+                    showLoading: false,
+                    hideLoading: false
+                }
+
+                Utils.apiCall("get", "/auth/session/check", null, config);
             }
         },
         mounted: function() {
+            self = this;
             if(this.granted){
-                this.checkSession();
+                self.checkSession();
+                setInterval(function(){ self.checkSession(); }, 60000 * 15);
             }
         }
     }

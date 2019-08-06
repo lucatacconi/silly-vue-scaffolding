@@ -27,8 +27,8 @@ $app->group('/auth', function () use ($app) {
 
         //Account status check
         if(!empty($aACCOUNT)){
-            if(!empty($aACCOUNT["status"])){
-                if($aACCOUNT["status"] != 'A'){
+            if(!empty($aACCOUNT["active"])){
+                if($aACCOUNT["active"] != 'Y'){
                     unset($aACCOUNT);
                 }
             }
@@ -43,6 +43,8 @@ $app->group('/auth', function () use ($app) {
             }
         }
 
+        //sleep(10);
+
         if(empty($aACCOUNT)){
 
             $data = [];
@@ -53,8 +55,17 @@ $app->group('/auth', function () use ($app) {
 
         }else{
 
+            //Setting session dueration
+            if(!empty($aACCOUNT["customSessionDuration"])){
+                $duration = $aACCOUNT["customSessionDuration"];
+            }else if(!empty(getenv("SESSION_DURATION"))){
+                $duration = getenv("SESSION_DURATION");
+            }else{
+                $duration = "2 hours";
+            }
+
             $now = new DateTime();
-            $future = new DateTime("now +2 hours");
+            $future = new DateTime("now +$duration");
             $server = $request->getServerParams();
             $jti = (new Base62)->encode(random_bytes(16));
 
@@ -63,7 +74,8 @@ $app->group('/auth', function () use ($app) {
                 "exp" => $future->getTimeStamp(),
                 "jti" => $jti,
                 "username" => $params["USERNAME"],
-                "name" => $aACCOUNT["name"]
+                "name" => $aACCOUNT["name"],
+                "userType" => !empty($aACCOUNT["userType"]) ? $aACCOUNT["userType"] : ''
             ];
 
             $secret = getenv("JWT_SECRET");
@@ -73,7 +85,8 @@ $app->group('/auth', function () use ($app) {
             $aACCOUNT_basic_data = [];
             $aACCOUNT_basic_data["username"] = $aACCOUNT["username"];
             $aACCOUNT_basic_data["name"] = $aACCOUNT["name"];
-            $aACCOUNT_basic_data["mail"] = $aACCOUNT["mail"];
+            $aACCOUNT_basic_data["userType"] = !empty($aACCOUNT["userType"]) ? $aACCOUNT["userType"] : '';
+            $aACCOUNT_basic_data["email"] = !empty($aACCOUNT["email"]) ? $aACCOUNT["email"] : '';
             $aACCOUNT_basic_data["expireDate"] = $aACCOUNT["expireDate"];
 
             $data["token"] = $token;

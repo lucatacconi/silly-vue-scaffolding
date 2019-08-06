@@ -1,15 +1,17 @@
 <template id="navigator" lang="html">
     <div>
         <navbar v-on:drawer="drawer=!drawer "></navbar>
-        <navdrawer :drawer="drawer" v-on:select="selection=$event" :selection="selection" v-on:navto="test($event)"></navdrawer>
+        <navdrawer :drawer="drawer" v-on:select="selection=$event" :navmap="navmap" :selection="selection"></navdrawer>
 
-        <v-container fluid fill-height>
-            <v-layout>
-                <v-flex>
-                    <router-view></router-view>
-                </v-flex>
-            </v-layout>
-        </v-container>
+        <v-content>
+            <v-container fluid fill-height>
+                <v-layout>
+                    <v-flex>
+                        <router-view></router-view>
+                    </v-flex>
+                </v-layout>
+            </v-container>
+        </v-content>
 
         <appfooter></appfooter>
    </div>
@@ -19,34 +21,36 @@
     module.exports = {
         data: function() {
             return {
-                drawer:true,
+                drawer: "true",
+                routes: [],
+                navmap: [],
                 selection:0
             }
         },
 
         mounted: function(){
-            console.log(router);
 
-            var self=this
-            Utils.apiCall("get", "/util/routes")
+            self = this;
+
+            // this.navmap = 1;
+
+            // setTimeout(function(){ self.navmap = 1 }, 500);
+
+            Utils.apiCall("get", "/navigation/")
             .then(function (response) {
-                console.log(response)
-                if(response.statusText=="OK"){
-                    routes=[]
-                    console.log(response.data.routes)
-                    for(var i=0;i<response.data.routes.length;i++){
+
+                if (typeof response.data.routes !== 'undefined' && response.data.routes.length > 0) {
+                    for(var i=0; i<response.data.routes.length; i++){
                         self.$router.addRoutes([
                             { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component) },
                         ])
                     }
-                }else{
-                    Swal.fire({
-                        type: 'error',
-                        title: 'Error routes api',
-                        html: 'Something went wrong!'
-                    })
                 }
-            })
+
+                if (typeof response.data.navMap !== 'undefined' && response.data.navMap.length > 0) {
+                    self.navmap = response.data.navMap;
+                }
+            });
         },
 
         components: {
@@ -56,12 +60,6 @@
         },
 
         methods: {
-            test: function(direzione) {
-                alert(direzione);
-                console.log(router);
-
-                router.push(direzione);
-            }
         }
     }
 </script>

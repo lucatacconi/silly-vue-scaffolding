@@ -1,0 +1,170 @@
+{
+    "navigationMap" :
+    [
+        {
+            "title": "Submenu example",
+            "subtitle": "Configurazioni sistema",
+            "allowed": ["admin","test1","test2"],
+            "visible": true,
+            "layout": {
+                "icon": "settings",
+                "iconExpanded": "settings",
+                "expanded": true,
+                "disabled": false,
+                "color": false,
+                "class": false
+            },
+            "subMenuItems":[
+                {
+                    "title": "Test App1",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action":{
+                        "path": "/app1",
+                        "component": "../../app/sections/test/App1.vue"
+                    },
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "disabled": false,
+                        "color": false,
+                        "class": false
+                    }
+                },
+                {
+                    "title": "Test App2",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action":{
+                        "path": "/app2",
+                        "component": "../../app/sections/test/App2.vue"
+                    },
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "disabled": false,
+                        "color": false,
+                        "class": false
+                    }
+                },
+                {
+                    "title": "Test App3",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action":{
+                        "path": "/app3",
+                        "component": "../../app/sections/test/App3.vue"
+                    },
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "disabled": false,
+                        "color": false,
+                        "class": false
+                    }
+                }
+            ]
+        },
+
+        {
+            "divider": true,
+            "visible": true
+        },
+
+        {
+            "title": "Submenu example 2",
+            "subtitle": "Configurazioni sistema",
+            "allowed": ["admin","test1","test2"],
+            "visible": true,
+            "layout": {
+                "icon": "settings",
+                "iconExpanded": "settings",
+                "expanded":false,
+                "disabled": false,
+                "color": false,
+                "class": false
+            },
+            "subMenuItems":[
+                {
+                    "title": "Alert Hello World 1",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action": "alert('Hello world 1')",
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "disabled": false,
+                        "color": false,
+                        "class": false
+                    }
+                },
+                {
+                    "title": "Alert Hello World 2",
+                    "subtitle": "element",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action": "alert('Hello world 2')",
+
+                    "layout":{
+                        "icon": "calendar_today",
+                        "disabled": true,
+                        "color": false,
+                        "class": false
+                    }
+                }
+            ]
+        },
+
+        {
+            "divider": true,
+            "visible": true
+        },
+
+
+        {
+            "title": "Http blank",
+            "subtitle": "Link to address",
+            "allowed":["admin","test1","test2"],
+            "visible": true,
+
+            "action":{
+                "url": "https://github.com/lucatacconi/silly-vue-scaffolding",
+                "target": "_blank"
+            },
+
+            "layout":{
+                "icon":"contacts",
+                "disabled": false,
+                "color": false,
+                "class": false
+            }
+        },
+        {
+            "title": "Http self",
+            "subtitle": "Link to address",
+            "allowed":["admin","test1","test2"],
+            "visible": true,
+
+            "action":{
+                "url": "https://github.com/lucatacconi/silly-vue-scaffolding",
+                "target": "_self"
+            },
+
+            "layout":{
+                "icon":"contacts",
+                "disabled": false,
+                "color": false,
+                "class": false
+            }
+        }
+    ]
+}

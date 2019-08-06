@@ -2,9 +2,11 @@
     {
         "username":"admin",
         "name":"Admin User",
-        "mail":"admin@nomail.com",
+        "userType":"admin",
+        "email":"admin@nomail.com",
         "password":"password",
-        "status":"A",
-        "expireDate":"2020-10-10"
+        "active":"Y",
+        "expireDate":"2020-10-10",
+        "customSessionDuration":""
     }
 ]

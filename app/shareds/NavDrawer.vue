@@ -1,131 +1,120 @@
 <template>
-    <v-navigation-drawer
-        v-model="drawer"
-        app
-        mobile-break-point="0"
-    >
-        <v-list
-            nav
-            dense
+    <div>
+        <v-navigation-drawer
+            v-model="drawer"
+            app
+            mobile-break-point="0"
         >
-
-            <template v-for="(item,i) in items">
-                <v-list-item
-                    :key="i"
-                    v-if="item.header==undefined&&item.visible"
-                    @click="launchEvent(item,i)"
-                >
-                    <v-list-item-icon>
-                        <v-icon :color="item.enable!='' ? item.color : 'red'">
-                            {{item.icon}}
-                        </v-icon>
-                    </v-list-item-icon>
-                    <v-list-item-title
-                        :class="item.enable ? item.color+'--text' : 'red--text'"
+            <v-list dense>
+                <template v-for="navItem in navMap">
+                    <v-list-group
+                        v-if="navItem.type == 'SUBM'"
+                        :value="navItem.layout.expanded ? navItem.layout.expanded : null"
+                        :key="navItem.id"
+                        :prepend-icon="navItem.layout.expanded ? navItem.layout.iconExpanded : navItem.layout.icon"
                     >
-                        {{item.title}}
-                    </v-list-item-title>
-                </v-list-item>
-                <v-subheader v-else-if="item.visible" :key="i">{{item.header.toUpperCase()}}</v-subheader>
-            </template>
+                        <template v-slot:activator>
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ navItem.title }}
+                                </v-list-item-title>
+                                <v-list-item-subtitle v-if="navItem.subtitle">
+                                    {{ navItem.subtitle }}
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
+                        </template>
 
-            <v-divider></v-divider>
+                        <v-list-item
+                            v-for="subItem in navItem.subMenuItems"
+                            :key="subItem.title"
+                            @click="launchEvent(subItem)"
+                            :disabled="subItem.layout.disabled || navItem.layout.disabled "
+                            :color="subItem.layout.color ? subItem.layout.color : null"
+                            :class="subItem.layout.class ? subItem.layout.class : null"
+                        >
+                            <v-list-item-content>
+                                <v-list-item-title>
+                                    {{ subItem.title }}
+                                </v-list-item-title>
+                                <v-list-item-subtitle v-if="subItem.subtitle">
+                                    {{ subItem.subtitle }}
+                                </v-list-item-subtitle>
+                            </v-list-item-content>
+                        </v-list-item>
+                    </v-list-group>
 
-            <v-list-item @click="NavTo('app1')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
+                    <v-divider v-if="navItem.type == 'DIV'" :key="navItem.id"></v-divider>
 
-                <v-list-item-content>
-                <v-list-item-title>App1</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
+                    <v-list-item
+                        v-else-if="navItem.type == 'ELM'"
+                        :key="navItem.id"
+                        @click="launchEvent(navItem)"
+                        :disabled="navItem.layout.disabled"
+                        :color="navItem.layout.color ? navItem.layout.color : null"
+                        :class="navItem.layout.class ? navItem.layout.class : null"
+                    >
+                        <v-list-item-icon>
+                            <v-icon>{{ navItem.layout.icon }}</v-icon>
+                        </v-list-item-icon>
 
-            <v-list-item @click="NavTo('app2')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                <v-list-item-title>App2</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-            <v-list-item @click="$router.push('app3')">
-                <v-list-item-icon>
-                <v-icon>mdi-view-dashboard</v-icon>
-                </v-list-item-icon>
-
-                <v-list-item-content>
-                <v-list-item-title>App3</v-list-item-title>
-                </v-list-item-content>
-            </v-list-item>
-
-        </v-list>
-    </v-navigation-drawer>
+                        <v-list-item-content>
+                            <v-list-item-title>
+                                {{ navItem.title }}
+                            </v-list-item-title>
+                            <v-list-item-subtitle v-if="navItem.subtitle">
+                                {{ navItem.subtitle }}
+                            </v-list-item-subtitle>
+                        </v-list-item-content>
+                    </v-list-tile>
+                </template>
+            </v-list>
+        </v-navigation-drawer>
+    <div>
 </template>
 
 <script>
 module.exports = {
     data:function(){
         return{
-            items:[]
         }
     },
-    props:['drawer','selection'],
-    watch: {
-        selection:function(){
-            for(var i=0;i<this.items.length;i++){
-                if(i==this.selection){
-                    this.items[i].color="blue"
-                }else{
-                    this.items[i].color="black"
-                }
-            }
+    computed: {
+        navMap: function () {
+            return this.navmap;
         }
+    },
+
+
+    props:['drawer','selection', 'navmap'],
+    watch: {
+        // selection:function(){
+        //     for(var i=0;i<this.items.length;i++){
+        //         if(i==this.selection){
+        //             this.items[i].color="blue"
+        //         }else{
+        //             this.items[i].color="black"
+        //         }
+        //     }
+        // }
     },
     methods: {
-
-        NavTo:function(direzione){
-            router.push(direzione);
-            //this.$emit('navto', direzione);
-        },
-
-
-        launchEvent:function(item,i){
-            if(item.enable!=undefined&&item.enable){
-                if(item.action!="link"){
-                    this.$emit('select',i)
-                }
-
-                if(item.action=="link"){
-                    window.open(item.href,item.target)
-                }
+        launchEvent:function(navItem){
+            if(navItem.actionType=="LINK"){
+                window.open(navItem.action.url, navItem.action.target)
+            }else if(navItem.actionType=="SECT"){
+                router.push(navItem.action.path);
+            }else if(navItem.actionType=="FUNC"){
+                var F = new Function (navItem.action);
+                return(F())
             }else{
-                Swal.fire({
-                    type: 'error',
-                    title: 'Item disabled',
-                    html: 'This item is disabled!'
-                })
+                return;
             }
         }
     },
-    created:function() {
-        var self=this
-        Utils.apiCall("get", "/util/menu")
-        .then(function (response) {
-            Utils.showLoadingOFF();
-            if(response.statusText=="OK"){
-                self.items=response.data.menu
-                self.items[0].color="blue"
-            }else{
-                Swal.fire({
-                    type: 'error',
-                    title: 'Error menu api',
-                    html: 'Something went wrong!'
-                })
-            }
-        });
+    mounted:function() {
     }
 }
 </script>
+
+<style>
+</style>

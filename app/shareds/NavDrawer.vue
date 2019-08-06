@@ -9,7 +9,7 @@
                 <template v-for="navItem in navMap">
                     <v-list-group
                         v-if="navItem.type == 'SUBM'"
-                        value="navItem.layout.expanded"
+                        :value="navItem.layout.expanded ? navItem.layout.expanded : null"
                         :key="navItem.id"
                         :prepend-icon="navItem.layout.expanded ? navItem.layout.iconExpanded : navItem.layout.icon"
                     >
@@ -27,7 +27,10 @@
                         <v-list-item
                             v-for="subItem in navItem.subMenuItems"
                             :key="subItem.title"
-                            @click="test('Test sub')"
+                            @click="launchEvent(subItem)"
+                            :disabled="subItem.layout.disabled || navItem.layout.disabled "
+                            :color="subItem.layout.color ? subItem.layout.color : null"
+                            :class="subItem.layout.class ? subItem.layout.class : null"
                         >
                             <v-list-item-content>
                                 <v-list-item-title>
@@ -42,7 +45,14 @@
 
                     <v-divider v-if="navItem.type == 'DIV'" :key="navItem.id"></v-divider>
 
-                    <v-list-item v-else-if="navItem.type == 'ELM'" :key="navItem.id" @click="test('Test el')">
+                    <v-list-item
+                        v-else-if="navItem.type == 'ELM'"
+                        :key="navItem.id"
+                        @click="launchEvent(navItem)"
+                        :disabled="navItem.layout.disabled"
+                        :color="navItem.layout.color ? navItem.layout.color : null"
+                        :class="navItem.layout.class ? navItem.layout.class : null"
+                    >
                         <v-list-item-icon>
                             <v-icon>{{ navItem.layout.icon }}</v-icon>
                         </v-list-item-icon>
@@ -88,57 +98,23 @@ module.exports = {
         // }
     },
     methods: {
-
-
-        test:function(message){
-            alert(message);
-            //this.$emit('navto', direzione);
-        },
-
-
-        // NavTo:function(direzione){
-        //     router.push(direzione);
-        //     //this.$emit('navto', direzione);
-        // },
-
-
-        // launchEvent:function(item,i){
-        //     if(item.enable!=undefined&&item.enable){
-        //         if(item.action!="link"){
-        //             this.$emit('select',i)
-        //         }
-
-        //         if(item.action=="link"){
-        //             window.open(item.href,item.target)
-        //         }
-        //     }else{
-        //         Swal.fire({
-        //             type: 'error',
-        //             title: 'Item disabled',
-        //             html: 'This item is disabled!'
-        //         })
-        //     }
-        // }
+        launchEvent:function(navItem){
+            if(navItem.actionType=="LINK"){
+                window.open(navItem.action.url, navItem.action.target)
+            }else if(navItem.actionType=="SECT"){
+                router.push(navItem.action.path);
+            }else if(navItem.actionType=="FUNC"){
+                var F = new Function (navItem.action);
+                return(F())
+            }else{
+                return;
+            }
+        }
     },
     mounted:function() {
-
-        //self = this;
-
-        // var self=this
-        // Utils.apiCall("get", "/util/menu")
-        // .then(function (response) {
-        //     // Utils.showLoadingOFF();
-        //     if(response.statusText=="OK"){
-        //         self.items=response.data.menu
-        //         self.items[0].color="blue"
-        //     }else{
-        //         Swal.fire({
-        //             type: 'error',
-        //             title: 'Error menu api',
-        //             html: 'Something went wrong!'
-        //         })
-        //     }
-        // });
     }
 }
 </script>
+
+<style>
+</style>

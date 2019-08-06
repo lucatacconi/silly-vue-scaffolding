@@ -9,8 +9,8 @@
             "layout": {
                 "icon": "settings",
                 "iconExpanded": "settings",
-                "expanded":false,
-                "active":true,
+                "expanded": true,
+                "disabled": false,
                 "color": false,
                 "class": false
             },
@@ -28,7 +28,7 @@
 
                     "layout":{
                         "icon": "calendar_today",
-                        "active": true,
+                        "disabled": false,
                         "color": false,
                         "class": false
                     }
@@ -46,7 +46,7 @@
 
                     "layout":{
                         "icon": "calendar_today",
-                        "active": true,
+                        "disabled": false,
                         "color": false,
                         "class": false
                     }
@@ -64,7 +64,7 @@
 
                     "layout":{
                         "icon": "calendar_today",
-                        "active": true,
+                        "disabled": false,
                         "color": false,
                         "class": false
                     }
@@ -86,7 +86,7 @@
                 "icon": "settings",
                 "iconExpanded": "settings",
                 "expanded":false,
-                "active":true,
+                "disabled": false,
                 "color": false,
                 "class": false
             },
@@ -97,11 +97,11 @@
                     "allowed": ["admin","test1","test2"],
                     "visible": true,
 
-                    "action": "alert('Hello world 1)",
+                    "action": "alert('Hello world 1')",
 
                     "layout":{
                         "icon": "calendar_today",
-                        "active": true,
+                        "disabled": false,
                         "color": false,
                         "class": false
                     }
@@ -112,11 +112,11 @@
                     "allowed": ["admin","test1","test2"],
                     "visible": true,
 
-                    "action": "alert('Hello world 2)",
+                    "action": "alert('Hello world 2')",
 
                     "layout":{
                         "icon": "calendar_today",
-                        "active": true,
+                        "disabled": true,
                         "color": false,
                         "class": false
                     }
@@ -143,7 +143,7 @@
 
             "layout":{
                 "icon":"contacts",
-                "active":true,
+                "disabled": false,
                 "color": false,
                 "class": false
             }
@@ -161,7 +161,7 @@
 
             "layout":{
                 "icon":"contacts",
-                "active":true,
+                "disabled": false,
                 "color": false,
                 "class": false
             }

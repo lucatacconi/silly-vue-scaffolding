@@ -5,12 +5,13 @@
             app
             mobile-break-point="0"
         >
-            <v-list dense nav>
+            <v-list dense>
                 <template v-for="navItem in navMap">
                     <v-list-group
                         v-if="navItem.type == 'SUBM'"
                         :value="navItem.layout.expanded ? navItem.layout.expanded : null"
                         :key="navItem.id"
+                        active-class="itemActivated"
                     >
                         <template v-slot:activator>
                             <v-list-item-icon>
@@ -127,4 +128,7 @@ module.exports = {
 </script>
 
 <style>
+.itemActivated{
+    background-color: #d5e5ed;
+}
 </style>

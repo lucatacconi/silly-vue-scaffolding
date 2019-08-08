@@ -29,8 +29,6 @@
         },
         methods: {
             checkSession: function(){
-                var self = this;
-
                 var config = {
                     showLoading: false,
                     hideLoading: false
@@ -40,7 +38,7 @@
             }
         },
         mounted: function() {
-            self = this;
+            var self = this;
             if(this.granted){
                 self.checkSession();
                 setInterval(function(){ self.checkSession(); }, 60000 * 15);

@@ -26,7 +26,7 @@
         {
             "title": "App setup",
             "subtitle": "Download and configuration",
-            "allowed": ["admin","test1","test2"],
+            "allowed": ["admin"],
             "visible": true,
             "layout": {
                 "icon": "mdi-menu",
@@ -39,16 +39,16 @@
                 {
                     "title": "Scaffolding setup",
                     "subtitle": "hot to install",
-                    "allowed": ["admin","test1","test2"],
+                    "allowed": ["admin"],
                     "visible": true,
 
                     "action":{
-                        "path": "/app1",
-                        "component": "../../app/sections/test/App1.vue"
+                        "path": "/doc/scaffoldingSetup",
+                        "component": "../../app/sections/documentation/ScaffoldingSetup.vue"
                     },
 
                     "layout":{
-                        "icon": "mdi-open-in-app",
+                        "icon": "mdi-settings-outline",
                         "disabled": false,
                         "color": false,
                         "class": false
@@ -57,16 +57,16 @@
                 {
                     "title": "User configuration",
                     "subtitle": "Navigation setup",
-                    "allowed": ["admin","test1","test2"],
+                    "allowed": ["admin"],
                     "visible": true,
 
                     "action":{
-                        "path": "/app2",
-                        "component": "../../app/sections/test/App2.vue"
+                        "path": "/doc/userSetup",
+                        "component": "../../app/sections/documentation/UsersSetup.vue"
                     },
 
                     "layout":{
-                        "icon": "mdi-open-in-app",
+                        "icon": "mdi-account-multiple",
                         "disabled": false,
                         "color": false,
                         "class": false
@@ -75,34 +75,16 @@
                 {
                     "title": "Menu configuration",
                     "subtitle": "Navigation setup",
-                    "allowed": ["admin","test1","test2"],
+                    "allowed": ["admin"],
                     "visible": true,
 
                     "action":{
-                        "path": "/app2",
-                        "component": "../../app/sections/test/App2.vue"
+                        "path": "/doc/navigationSetup",
+                        "component": "../../app/sections/documentation/NavigationSetup.vue"
                     },
 
                     "layout":{
-                        "icon": "mdi-open-in-app",
-                        "disabled": false,
-                        "color": false,
-                        "class": false
-                    }
-                },
-                {
-                    "title": "Test App3",
-                    "subtitle": "element",
-                    "allowed": ["admin","test1","test2"],
-                    "visible": true,
-
-                    "action":{
-                        "path": "/app3",
-                        "component": "../../app/sections/test/App3.vue"
-                    },
-
-                    "layout":{
-                        "icon": "mdi-open-in-app",
+                        "icon": "mdi-dots-vertical-circle",
                         "disabled": false,
                         "color": false,
                         "class": false
@@ -115,7 +97,7 @@
         {
             "title": "Submenu example 2",
             "subtitle": "Configurazioni sistema",
-            "allowed": ["admin","test1","test2"],
+            "allowed": ["admin"],
             "visible": true,
             "layout": {
                 "icon": "mdi-menu",
@@ -128,7 +110,7 @@
                 {
                     "title": "Alert Hello World 1",
                     "subtitle": "element",
-                    "allowed": ["admin","test1","test2"],
+                    "allowed": ["admin"],
                     "visible": true,
 
                     "action": "alert('Hello world 1')",
@@ -143,7 +125,7 @@
                 {
                     "title": "Alert Hello World 2",
                     "subtitle": "element",
-                    "allowed": ["admin","test1","test2"],
+                    "allowed": ["admin"],
                     "visible": true,
 
                     "action": "alert('Hello world 2')",
@@ -167,7 +149,7 @@
         {
             "title": "Http blank",
             "subtitle": "Link to address",
-            "allowed":["admin","test1","test2"],
+            "allowed":["admin"],
             "visible": true,
 
             "action":{
@@ -185,7 +167,7 @@
         {
             "title": "Http self",
             "subtitle": "Link to address",
-            "allowed":["admin","test1","test2"],
+            "allowed":["admin"],
             "visible": true,
 
             "action":{

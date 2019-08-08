@@ -11,7 +11,7 @@
                         v-if="navItem.type == 'SUBM'"
                         :value="navItem.layout.expanded ? navItem.layout.expanded : null"
                         :key="navItem.id"
-                        active-class="itemActivated"
+                        active-class="groupActivated-NavDrawer"
                     >
                         <template v-slot:activator>
                             <v-list-item-icon>
@@ -36,6 +36,7 @@
                             :disabled="subItem.layout.disabled || navItem.layout.disabled "
                             :color="subItem.layout.color ? subItem.layout.color : null"
                             :class="subItem.layout.class ? subItem.layout.class : null"
+                            active-class="itemActivated"
                         >
                             <v-list-item-icon>
                                 <v-icon>{{ subItem.layout.icon }}</v-icon>
@@ -128,7 +129,7 @@ module.exports = {
 </script>
 
 <style>
-.itemActivated{
-    background-color: #d5e5ed;
-}
+    .groupActivated-NavDrawer{
+        background-color: #d5e5ed;
+    }
 </style>

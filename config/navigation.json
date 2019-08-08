@@ -24,6 +24,11 @@
         },
 
         {
+            "divider": true,
+            "visible": true
+        },
+
+        {
             "title": "App setup",
             "subtitle": "Download and configuration",
             "allowed": ["admin"],
@@ -93,10 +98,14 @@
             ]
         },
 
+        {
+            "divider": true,
+            "visible": true
+        },
 
         {
-            "title": "Submenu example 2",
-            "subtitle": "Configurazioni sistema",
+            "title": "Submenu example",
+            "subtitle": "",
             "allowed": ["admin"],
             "visible": true,
             "layout": {

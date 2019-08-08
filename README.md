@@ -16,7 +16,12 @@ $ composer install
 * PHP 7.1.3 or newer
 * Composer
 
+## Credits
+
+* [Luca Tacconi](https://github.com/lucatacconi)
+* [Emanuele Marchesotti](https://github.com/flagellarmirror)
+
 
 ## License
 
-The Slim Framework is licensed under the MIT license. See [License File](LICENSE.md) for more information.
+Silly Vue Scaffolding is licensed under the MIT license. See [License File](LICENSE.md) for more information.

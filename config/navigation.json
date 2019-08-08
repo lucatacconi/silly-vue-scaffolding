@@ -24,8 +24,8 @@
         },
 
         {
-            "title": "Submenu example",
-            "subtitle": "Configurazioni sistema",
+            "title": "App setup",
+            "subtitle": "Download and configuration",
             "allowed": ["admin","test1","test2"],
             "visible": true,
             "layout": {
@@ -55,7 +55,25 @@
                     }
                 },
                 {
-                    "title": "App page configuration",
+                    "title": "User configuration",
+                    "subtitle": "Navigation setup",
+                    "allowed": ["admin","test1","test2"],
+                    "visible": true,
+
+                    "action":{
+                        "path": "/app2",
+                        "component": "../../app/sections/test/App2.vue"
+                    },
+
+                    "layout":{
+                        "icon": "mdi-open-in-app",
+                        "disabled": false,
+                        "color": false,
+                        "class": false
+                    }
+                },
+                {
+                    "title": "Menu configuration",
                     "subtitle": "Navigation setup",
                     "allowed": ["admin","test1","test2"],
                     "visible": true,

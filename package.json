@@ -2,6 +2,15 @@
     "name": "silly-vue-scaffolding",
     "version": "0.4.0",
     "description": "Scafflodind for simple single page vue applications without build proces",
+    "dependencies": {
+        "slim/slim": "^3.12",
+        "monolog/monolog": "^1.24",
+        "tuupola/base62": "^2.0",
+        "tuupola/slim-jwt-auth": "^3.0",
+        "tuupola/slim-basic-auth": "^3.0",
+        "vlucas/phpdotenv": "^2.4",
+        "twig/twig": "^2.0"
+    },
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"

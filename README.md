@@ -7,8 +7,15 @@ Scafflodind for simple single page vue applications without build proces
 It's recommended that you use [Composer](https://getcomposer.org/) to install Silly-vue-scaffolding.
 
 ```bash
-$ composer install 
+$ composer install
 ```
+
+## System Requirements
+
+* Web server with URL rewriting
+* PHP 7.1.3 or newer
+* Composer
+
 
 ## License
 

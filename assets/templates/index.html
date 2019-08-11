@@ -1,38 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="{{ application.language }}">
     <head>
+        <meta charset="utf-8">
+        <meta name="application-name" content="{{ application.name }}">
+        <meta name="author" content="{{ application.authors }}">
+        <meta name="keywords" content="{{ application.keywords }}">
+        <meta name="description" content="{{ application.description }}">
 
-        <!-- <meta charset="utf-8">
-        <meta http-equiv="content-type" content="text/html; charset=utf-8">
-        <meta name="robots" content="index, nofollow"> -->
-
-        <!-- <meta charset="utf-8">
-        <title>Footer component — Vuetify.js</title>
-        <meta name="mobile-web-app-capable" content="yes">
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimal-ui">
-        <meta name="description" content="The footer component provides a container for displaying additional navigation information about a site.">
-        <meta name="twitter:card" content="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-300.png">
-        <meta property="og:url" content="https://vuetifyjs.com/en/components/footer">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="Footer component — Vuetify.js">
-        <meta property="og:description" content="The footer component provides a container for displaying additional navigation information about a site.">
-        <meta property="og:image" content="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-300.png">
-        <meta property="fb:app_id" content="542948969434243">
-        <meta name="keywords" content="footers, vuetify footer component, vue footer component"> -->
-
-        <!-- Mancano tutti i metadata abbinati a Smarty-->
+        <meta name="robots" content="index, nofollow">
 
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
         <link href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@latest/css/materialdesignicons.min.css" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+
+        {% if run_mode == "PRODU" %}
+            <link href="https://cdn.jsdelivr.net/npm/vuetify@2.0.5/dist/vuetify.min.css" rel="stylesheet">
+        {% else %}
+            <link href="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.min.css" rel="stylesheet">
+        {% endif %}
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
         <link href="../assets/css/app.css" rel="stylesheet">
 
-        <title>{{app_title}}</title>
+        <title>{{ application.title }}</title>
     </head>
     <body>
         <div id="edge">
@@ -41,20 +33,25 @@
             </v-app>
         </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+        {% if run_mode == "PRODU" %}
+            <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vuetify@2.0.5/dist/vuetify.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vue-router@3.1.2/dist/vue-router.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/axios@0.19.0/dist/axios.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vee-validate@2.2.14/dist/vee-validate.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.15.3/dist/sweetalert2.all.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/moment@2.24.0/moment.min.js"></script>
+        {% else %}
+            <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vuetify/dist/vuetify.js"></script>
+            <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+            <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+            <script src="https://momentjs.com/downloads/moment.min.js"></script>
+        {% endif %}
 
         <script src="../assets/js/httpVueLoader.js"></script>
-
-        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/vee-validate@latest/dist/vee-validate.js"></script>
-
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
-
-        <script src="https://momentjs.com/downloads/moment.min.js"></script>
-
         <script src="../assets/js/utils.js"></script>
 
         <script>

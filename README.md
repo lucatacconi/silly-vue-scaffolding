@@ -10,6 +10,8 @@ It's recommended that you use [Composer](https://getcomposer.org/) to install Si
 $ composer install
 ```
 
+## First Login
+
 ## System Requirements
 
 * Web server with URL rewriting

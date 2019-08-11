@@ -32,10 +32,6 @@
 
             self = this;
 
-            // this.navmap = 1;
-
-            // setTimeout(function(){ self.navmap = 1 }, 500);
-
             Utils.apiCall("get", "/navigation/")
             .then(function (response) {
 

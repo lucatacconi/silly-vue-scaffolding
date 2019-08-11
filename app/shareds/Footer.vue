@@ -4,7 +4,7 @@
       dark
       color="blue-grey"
     >
-        Vuetify
+        {{appName}}
         <v-spacer></v-spacer>
         &copy; {{ new Date().getFullYear() }}
     </v-footer>
@@ -14,6 +14,11 @@
     module.exports = {
         data: function() {
             return {}
+        },
+        computed:{
+            appName: function () {
+                return document.querySelector("meta[name='application-name']").getAttribute("content");
+            }
         }
     }
 </script>

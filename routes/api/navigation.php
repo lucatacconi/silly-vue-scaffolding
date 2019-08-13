@@ -123,13 +123,13 @@ $app->group('/navigation', function () use ($app) {
 
         $routeFounded = false;
         foreach($routes as $row_cnt => $row_data){
-            if($bootstrapPage == $row_data["path"]){
+            if($bootstrapPage["route"] == $row_data["path"]){
                 $routeFounded = true;
                 break;
             }
         }
         if(!$routeFounded){
-            $bootstrapPage = false;
+            $bootstrapPage = [];
         }
 
 

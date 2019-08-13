@@ -110,7 +110,9 @@ module.exports = {
     },
     methods: {
         launchEvent:function(navItem){
-            sessionStorage.setItem("activeSection", navItem.title)
+            sessionStorage.setItem("activeSection", navItem.title);
+            this.$emit('selectedsection', navItem.title);
+
             if(navItem.actionType=="LINK"){
                 window.open(navItem.action.url, navItem.action.target)
             }else if(navItem.actionType=="SECT"){

@@ -1,6 +1,9 @@
 {
 
-    "bootstrapPage": "/dashboard",
+    "bootstrapPage":{
+        "route": "/dashboard",
+        "title": "Dashboard"
+    },
 
     "navigationMap" :
     [

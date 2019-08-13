@@ -58,13 +58,6 @@
 
             var lang = document.documentElement.lang;
 
-            // console.log( document.querySelector("meta[property='application-name']").getAttribute("content") );
-            //console.log( document.querySelector("meta[property='author']").getAttribute("content") );
-            console.log( document.querySelector("meta[name='author']").getAttribute("content")  );
-            //console.log( document.querySelector("meta") );
-
-            //alert(document.querySelector("meta[property='application-name']").getAttribute("content"));
-
             Vue.use(VeeValidate, { locale: lang });
             Vue.use(Vuetify);
             Vue.use(VueRouter)

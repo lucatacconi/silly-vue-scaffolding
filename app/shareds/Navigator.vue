@@ -1,7 +1,7 @@
 <template id="navigator" lang="html">
     <div>
-        <navbar v-on:drawer="drawer=!drawer "></navbar>
-        <navdrawer :drawer="drawer" v-on:select="selection=$event" :navmap="navmap" :selection="selection"></navdrawer>
+        <navbar v-on:drawer="drawer=!drawer" :activesection="activeSection"></navbar>
+        <navdrawer :drawer="drawer" v-on:select="selection=$event" :navmap="navmap" :selection="selection" v-on:selectedsection="onSelectedSection"></navdrawer>
 
         <v-content>
             <v-container fluid fill-height>
@@ -24,7 +24,8 @@
                 drawer: "true",
                 routes: [],
                 navmap: [],
-                selection:0
+                selection: 0,
+                activeSection: ''
             }
         },
 
@@ -47,8 +48,9 @@
                     self.navmap = response.data.navMap;
                 }
 
-                if (typeof response.data.bootstrapPage !== 'undefined' && response.data.bootstrapPage != '') {
-                    router.push(response.data.bootstrapPage);
+                if (typeof response.data.bootstrapPage !== 'undefined' && response.data.bootstrapPage.route != '') {
+                    self.activeSection = response.data.bootstrapPage.title;
+                    router.push(response.data.bootstrapPage.route);
                 }
             });
         },
@@ -60,7 +62,10 @@
         },
 
         methods: {
-        }
+            onSelectedSection (value) {
+                this.activeSection = value;
+            }
+        },
     }
 </script>
 

@@ -3,7 +3,7 @@
         <v-app-bar-nav-icon @click="drawer()" ></v-app-bar-nav-icon>
         <v-toolbar-title>
             {{appName}}
-            <span class="subtitle-1 amber--text lighten-5" v-if="activeSection != ''"> - {{ activeSection }}</span>
+            <span class="subtitle-1 yellow--text lighten-5 font-weight-black" v-if="activesection != ''"> - {{ activesection }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <navbartools></navbartools>
@@ -15,13 +15,13 @@
     module.exports = {
         data: function() {
             return {
-                activeSection: ''
             }
         },
+        props:['activesection'],
         computed:{
             appName: function () {
                 return document.querySelector("meta[name='application-name']").getAttribute("content");
-            },
+            }
         },
         methods: {
             drawer:function(){
@@ -33,7 +33,6 @@
             'navbartools': httpVueLoader('../../app/shareds/NavBarTools.vue')
         },
         mounted: function(){
-            this.activeSection = sessionStorage.getItem("activeSection");
         }
     }
 </script>

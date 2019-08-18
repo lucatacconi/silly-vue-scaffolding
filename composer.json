@@ -1,6 +1,6 @@
 {
     "name": "lucatacconi/silly-vue-scaffolding",
-    "description": "Scafflodind for simple single page vue applications without build process",
+    "description": "Silly-vue-scaffolding is an easy way to release modular Vue/Vuetify applications, composed of several Vue files, loaded but not compiled. Silly-vue-scaffolding includes an API engine based on Slim e protected by JWT. Includes also a login system end a dynamic menu shown based on user grant levels.",
     "type": "project",
     "keywords": [
         "slim",

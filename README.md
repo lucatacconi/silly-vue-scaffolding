@@ -19,21 +19,58 @@ The custom sections can be added to the sections directory and recalled via an e
 Read specific sections of this document to install and configure the application.
 
 
-## Installation
-
-It's recommended that you use [Composer](https://getcomposer.org/) to install Silly-vue-scaffolding.
-
-```bash
-$ composer install
-```
-
-## First Login
-
 ## System Requirements
 
 * Web server with URL rewriting
 * PHP 7.1.3 or newer
 * Composer
+
+
+## Installation and application setup
+
+It's recommended that you use [Composer](https://getcomposer.org/) to install Silly-vue-scaffolding.
+
+```
+bash
+$ composer create-project lucatacconi/silly-vue-scaffolding
+```
+
+In any case it is possible to download the complete package from Github and proceed with the configuration of the appropriate files.
+
+
+## First Login
+
+The application is preconfigured with a single access user to verify the login procedure and access the dashboard and the main menu.
+
+To test access use the login **admin** and password **password**
+
+
+## Accounts configuration
+
+All users enabled to access the application are configured in the configuration file /config/accounts.json.
+
+The accounts.json configuration file has the following format:
+```
+[
+    {
+        "username":"admin",
+        "name":"Admin User",
+        "userType":"admin",
+        "email":"admin@nomail.com",
+        "password":"password",
+        "active":"Y",
+        "expireDate":"2020-10-10",
+        "customSessionDuration":""
+    }
+]
+```
+
+Among the various information listed, the type of user is also induced, information that is then used to filter the menu items enabled for the user.
+
+For simplicity's choice the access configurations have been inserted in a file. However, nothing prevents the implementation of user management based on database reading.
+
+## Menu configuration
+
 
 ## Credits
 

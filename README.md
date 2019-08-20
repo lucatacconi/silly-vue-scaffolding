@@ -61,7 +61,18 @@ The accounts.json configuration file has the following format:
         "active":"Y",
         "expireDate":"2020-10-10",
         "customSessionDuration":""
-    }
+    },
+    {
+        "username":"j.doe",
+        "name":"Jhon Doe",
+        "userType":"user",
+        "email":"j.doe@nomail.com",
+        "password":"password",
+        "active":"Y",
+        "expireDate":"2020-10-10",
+        "customSessionDuration":""
+    },
+    ...
 ]
 ```
 
@@ -70,6 +81,90 @@ Among the various information listed, the type of user is also induced, informat
 For simplicity's choice the access configurations have been inserted in a file. However, nothing prevents the implementation of user management based on database reading.
 
 ## Menu configuration
+
+All menu items shown in the main menu are configured in the configuration file /config/navigation.json.
+
+The navigation.json configuration file contains two configuration items: the first element configures the bootstrap page (bootstrapPage), the second element configures the map of menu items (navigationMap).
+
+**bootstrapPage** configures the first page that will be shown following a successful login:
+```
+    "bootstrapPage":{
+        "route": "/dashboard",
+        "title": "Dashboard"
+    }
+```
+
+**route** represents the route of one of the elements configured in the navigation map, **title** represents the title that will be shown in the application's NavBar:
+
+**navigationMap** contains all the elements that are shown in the main menu. It can contain three types of elements: the main menu element, the submenu element which in turn contains menu elements and the divider that represents a graphic subdivision within the mneu represented by a line. Each individual element can then be configured with different properties that set its behavior, display and layout.
+
+The format for the single menu element is as follows:
+```
+    {
+        "title": "Dashboard",
+        "subtitle": "App main page",
+        "allowed":[],
+        "visible": true,
+
+        # if you want to point to an internal section
+
+        "action":{
+            "path": "/dashboard",
+            "component": "../../app/sections/dashboard/Dashboard.vue"
+        },
+
+        # if you want to call a javascript function
+
+        "action": "alert('Hello world 1')",
+
+        # if you want to call an external web page
+
+        "action":{
+            "url": "https://github.com/lucatacconi/silly-vue-scaffolding",
+            "target": "_blank"
+        },
+
+        "action":{
+            "url": "https://github.com/lucatacconi/silly-vue-scaffolding",
+            "target": "_self"
+        },
+
+        "layout":{
+            "icon":"mdi-view-dashboard-variant",
+            "disabled": false,
+            "color": false,
+            "class": false
+        }
+    }
+```
+
+The format for the divider element is as follows:
+```
+    {
+        "divider": true,
+        "visible": true
+    },
+```
+
+The format for the submenu element is as follows. Within the subMenuItems section the elements must be inserted as shown in the previous examples.
+```
+    {
+        "title": "App1",
+        "subtitle": "Example app1"
+        "allowed": ["admin"],
+        "visible": true,
+        "layout": {
+            "icon": "mdi-menu",
+            "expanded": true,
+            "disabled": false,
+            "color": false,
+            "class": false
+        },
+        "subMenuItems":[
+            ...
+        ]
+    }
+```
 
 
 ## Credits

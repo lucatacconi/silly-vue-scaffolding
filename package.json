@@ -19,7 +19,9 @@
         "type": "git",
         "url": "git+https://github.com/lucatacconi/silly-vue-scaffolding.git"
     },
-    "keywords": [],
+    "keywords": [
+        "Slim3", "Api", "JWT", "Vue", "Vuetify", "Router", "Http-vue-loader", "Protected area", "Login system", "Menu tool"
+    ],
     "author": "Luca Tacconi, Emanuele Marchesotti",
     "license": "MIT",
     "bugs": {

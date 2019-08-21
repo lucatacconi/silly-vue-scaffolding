@@ -3,9 +3,7 @@
     "description": "Silly-vue-scaffolding is an easy way to release modular Vue/Vuetify applications, composed of several Vue files, loaded but not compiled. Silly-vue-scaffolding includes an API engine based on Slim e protected by JWT. Includes also a login system end a dynamic menu shown based on user grant levels.",
     "type": "project",
     "keywords": [
-        "slim",
-        "api",
-        "rest"
+        "Slim3", "Api", "JWT", "Vue", "Vuetify", "Router", "Http-vue-loader", "Protected area", "Login system", "Menu tool"
     ],
     "homepage": "http://www.monolite.net",
     "license": "MIT",

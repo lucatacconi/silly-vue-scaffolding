@@ -30,10 +30,13 @@ Read specific sections of this document to install and configure the application
 
 It's recommended that you use [Composer](https://getcomposer.org/) to install Silly-vue-scaffolding.
 
+Access the **Document Root** folder on your **Apache Server** or one of the configured virtual hosts and run the following command:
 ```
 bash
 $ composer create-project lucatacconi/silly-vue-scaffolding
 ```
+
+Configure the main application information by editing the file /config/application.json.
 
 In any case it is possible to download the complete package from Github and proceed with the configuration of the appropriate files.
 

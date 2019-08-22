@@ -21,7 +21,7 @@
             "layout":{
                 "icon":"mdi-view-dashboard-variant",
                 "disabled": false,
-                "color": false,
+                "color": "red--text",
                 "class": false
             }
         },

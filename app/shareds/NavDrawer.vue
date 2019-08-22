@@ -34,7 +34,6 @@
                             :key="subItem.title"
                             @click="launchEvent(subItem)"
                             :disabled="subItem.layout.disabled || navItem.layout.disabled "
-                            :color="subItem.layout.color ? subItem.layout.color : null"
                             :class="subItem.layout.class ? subItem.layout.class : null"
                             active-class="itemActivated"
                         >
@@ -43,7 +42,9 @@
                             </v-list-item-icon>
 
                             <v-list-item-content>
-                                <v-list-item-title>
+                                <v-list-item-title
+                                    :class="subItem.layout.color ? subItem.layout.color : null"
+                                >
                                     {{ subItem.title }}
                                 </v-list-item-title>
                                 <v-list-item-subtitle v-if="subItem.subtitle">
@@ -61,7 +62,6 @@
                         :key="navItem.id"
                         @click="launchEvent(navItem)"
                         :disabled="navItem.layout.disabled"
-                        :color="navItem.layout.color ? navItem.layout.color : null"
                         :class="navItem.layout.class ? navItem.layout.class : null"
                     >
                         <v-list-item-icon>
@@ -69,7 +69,9 @@
                         </v-list-item-icon>
 
                         <v-list-item-content>
-                            <v-list-item-title>
+                            <v-list-item-title
+                                :class="navItem.layout.color ? navItem.layout.color : null"
+                            >
                                 {{ navItem.title }}
                             </v-list-item-title>
                             <v-list-item-subtitle v-if="navItem.subtitle">
@@ -116,6 +118,23 @@ module.exports = {
             if(navItem.actionType=="LINK"){
                 window.open(navItem.action.url, navItem.action.target)
             }else if(navItem.actionType=="SECT"){
+                //Rimuovo colore da tutte le voci
+                for(var i=0;i<this.navmap.length;i++){
+                    if(this.navmap[i].layout!=undefined){
+                        this.navmap[i].layout.color=false
+                    }
+                    if(this.navmap[i].subMenuItems!=undefined){
+                        for(var k=0;k<this.navmap[i].subMenuItems.length;k++){
+                            if(this.navmap[i].subMenuItems[k].layout!=undefined){
+                                this.navmap[i].subMenuItems[k].layout.color=false
+                            }
+                        }
+                    }
+                }
+                //Coloro la voce corrente
+                if(navItem.layout!=undefined){
+                    navItem.layout.color="red--text"
+                }
                 router.push(navItem.action.path);
             }else if(navItem.actionType=="FUNC"){
                 var F = new Function (navItem.action);

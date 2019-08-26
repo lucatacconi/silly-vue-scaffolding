@@ -4,12 +4,24 @@
             <v-card-title>Silly-vue-scaffolding</v-card-title>
             <v-card-text class="pt-5">
                 <p class="text-justify">
-                    <span class="font-weight-bold">Silly-vue-scaffolding</span> is an easy way to deploy un applicazione che comprende un sistema di autenticazione,
-                    un sistema di sicurezza che si occupa di validare goni passaggio e ogni chiamata API basato su JWT, un sistama di navigazione che si appoggia su di
-                    un menu configurabile che permette di accedere facilmente alle sezioni dell'applicazione.
+                    Vue/Vuetify, combined with systems such as Webpack, Browserify or Vue-cli becomes an extremely easy and versatile development tool.
+                    Compiling all Vue files in a single file, even if useful for a more rapid execution of the application, sometimes becomes a brake for
+                    debugging, analysis of functioning on production servers or last minute changes.
+                </p>
+                <p class="text-justify">
+                    <span class="font-weight-bold">Silly-Vue-Scaffolding</span> is an easy way to release modular <span class="font-weight-bold">Vue/Vuetify</span>
+                    applications, thus composed of several Vue files. Vue components are loaded but not compiled and made available using the
+                    <a href="https://github.com/FranckFreiburger/http-vue-loader">FranckFreiburger/http-vue-loader</a> library.
+                </p>
+                <p class="text-justify">
+                    Natively <span class="font-weight-bold">Silly-Vue-Scaffolding</span> includes an API section based on <span class="font-weight-bold">Slim</span>
+                    and protected by <span class="font-weight-bold">JWT</span> (<a href="https://github.com/tuupola/slim-jwt-auth">tuupola/slim-jwt-auth</a>.
+                    A login page allows users to access to application's main area whose frontend is based on <span class="font-weight-bold">Vuetify</span>.
+                    The application menu is managed dynamically created, based on a specific configuration file that identifies items and filtered them based
+                    on the user's access level. The content of the main application area is managed via <span class="font-weight-bold">Vue Router</span>.
                 </p>
 
-                <v-carousel class="mt-5 mb-5">
+                <v-carousel class="mt-10 mb-10">
                     <v-carousel-item
                         v-for="(item,i) in items"
                         :key="i"
@@ -20,10 +32,13 @@
                     ></v-carousel-item>
                 </v-carousel>
 
-
                 <p class="text-justify">
-                    <span class="font-weight-bold">Silly-vue-scaffolding</span> utilizza Slim3 per gestire le API legate all'applicazione, Vue e Vuetify, per la visualizzazione
-                    del frontend, http-vue-loader per il loading delle sezioni applicative e vue router per orchestrare la navigazione all'interno delle sezioni.
+                    Specific configuration files make it possible to easily configure all running parameters of the application.
+                    The custom sections can be added to the sections directory and recalled via an entry in the specific configuration
+                    file that identifies the sections that can be recalled in the main menu.
+                </p>
+                <p class="text-justify">
+                    Read specific sections of this document to install and configure the application.
                 </p>
 
                 <div class="title">System Requirements</div>

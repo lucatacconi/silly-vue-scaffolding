@@ -88,6 +88,8 @@ $app->group('/auth', function () use ($app) {
             $aACCOUNT_basic_data["userType"] = !empty($aACCOUNT["userType"]) ? $aACCOUNT["userType"] : '';
             $aACCOUNT_basic_data["email"] = !empty($aACCOUNT["email"]) ? $aACCOUNT["email"] : '';
             $aACCOUNT_basic_data["expireDate"] = $aACCOUNT["expireDate"];
+            $aACCOUNT_basic_data["loginDate"] = date("Y-m-d H:i:s");
+            $aACCOUNT_basic_data["sessionExpireDate"] = date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s")." + $duration") );;
 
             $data["token"] = $token;
             $data["expires"] = $future->getTimeStamp();

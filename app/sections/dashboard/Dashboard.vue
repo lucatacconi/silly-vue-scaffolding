@@ -41,13 +41,58 @@
                     Read specific sections of this document to install and configure the application.
                 </p>
 
-                <div class="title">System Requirements</div>
+
+                <div class="title mt-10">System Requirements</div>
 
                 <p class="text-justify">
-                    Web server with URL rewriting
-                    PHP 7.1.3 or newer
-                    Composer
+                    <ul>
+                        <li>Web server with URL rewriting</li>
+                        <li>PHP 7.1.3 or newer</li>
+                        <li>Composer</li>
+                    </ul>
                 </p>
+
+
+                <div class="title mt-10">Credits</div>
+
+                <p class="text-justify">
+                    <ul>
+                        <li><a href="https://github.com/lucatacconi" target="_blank">Luca Tacconi</a></li>
+                        <li><a href="https://github.com/flagellarmirror" target="_blank">Emanuele Marchesotti</a></li>
+                    </ul>
+                </p>
+
+
+                <div class="title mt-10">License</div>
+
+                <p class="text-justify">
+                    Silly Vue Scaffolding is licensed under the MIT license.
+                </p>
+
+                <p class="text-justify">
+                    Permission is hereby granted, free of charge, to any person obtaining a copy
+                    of this software and associated documentation files (the "Software"), to deal
+                    in the Software without restriction, including without limitation the rights
+                    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+                    copies of the Software, and to permit persons to whom the Software is furnished
+                    to do so, subject to the following conditions:
+                </p>
+
+                <p class="text-justify">
+                    The above copyright notice and this permission notice shall be included in all
+                    copies or substantial portions of the Software.
+                </p>
+
+                <p class="text-justify">
+                    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+                    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+                    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+                    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+                    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+                    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+                    THE SOFTWARE.
+                </p>
+
             </v-card-text>
         </v-card>
     </div>

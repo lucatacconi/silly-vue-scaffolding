@@ -36,7 +36,7 @@ bash
 $ composer create-project lucatacconi/silly-vue-scaffolding
 ```
 
-Configure the main application information by editing the file /config/application.json.
+Configure the main application information and environment by editing /config/application.json and .env file
 
 In any case it is possible to download the complete package from Github and proceed with the configuration of the appropriate files.
 
@@ -146,7 +146,7 @@ The format for the divider element is as follows:
     {
         "divider": true,
         "visible": true
-    },
+    }
 ```
 
 The format for the submenu element is as follows. Within the subMenuItems section the elements must be inserted as shown in the previous examples.

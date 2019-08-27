@@ -39,6 +39,8 @@
                 </p>
                 <p class="text-justify">
                     Read specific sections of this document to install and configure the application.
+                    Check <a href="https://github.com/lucatacconi/silly-vue-scaffolding" target="_blank">https://github.com/lucatacconi/silly-vue-scaffolding</a>
+                    for updates.
                 </p>
 
 

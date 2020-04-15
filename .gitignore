@@ -1,6 +1,7 @@
 
 #compiled
 var/logs/*
+!var/logs/.htaccess
 
 # Logs files
 *.log
@@ -15,6 +16,6 @@ var/logs/*
 *.tar
 *.zip
 
-
+# Ingore all lib e vendor file
 /vendor/*
 composer.lock

@@ -36,6 +36,15 @@ var Utils = {
         window.location.href = "index.php";
         return;
     },
+    showConnError: function () {
+        Swal.fire({
+            type: "error",
+            title: "Connection Error",
+            text: "Check you connection status and try again"
+        }).then(function(result) {
+            return;
+        })
+    },
 
     apiCall: function (method, url, parameters, config) {
 
@@ -88,12 +97,6 @@ var Utils = {
             }
         }
 
-        //Content type
-        if(config != null && typeof config['Content-Type'] !== "undefined"){
-            call_config.headers['Content-Type'] = config['Content-Type'];
-        }
-
-
         //if i'm showing loading calling api i need to hide it once had the result
         if(this.showLoadingConf && this.hideLoadingConf){
             axios.interceptors.response.use(function (response) {
@@ -112,7 +115,7 @@ var Utils = {
                     type: 'error',
                     title: 'Account error',
                     text: "Login error or session expired",
-                }).then((result) => {
+                }).then(function(result) {
                     Utils.doLogoutAndGoHome();
                 }).catch(swal.noop);
             }else{
@@ -121,12 +124,107 @@ var Utils = {
                     type: 'error',
                     title: error.response.data.status,
                     text: error.response.data.message,
-                }).then((result) => {
+                }).then(function(result) {
                     return;
                 })
                 .catch(swal.noop);
             }
         });
+    },
+
+    fileUpload: function (url, formdata, config) {
+
+        if (!formdata || !url) {
+            console.error('Function apiCall missing arguments');
+            return;
+        }
+
+        if(typeof config === "undefined"){ config = null; }
+
+        this.showLoadingConf = true;
+        if(config != null && typeof config.showLoading !== "undefined" && config.showLoading == false){
+            this.showLoadingConf = false;
+        }
+
+        this.hideLoadingConf = true;
+        if(config != null && typeof config.hideLoading !== "undefined" && config.hideLoading == false){
+            this.hideLoadingConf = false;
+        }
+
+        if(this.showLoadingConf){
+            Utils.showLoading();
+        }
+
+        //If url start with http or https I'll use url to call api. Api called is external
+        //If url start with /xxxx it means that api is internal
+        if ( url.indexOf("https") == -1 && url.indexOf("http") == -1 ) {
+            if(url.substr(0, 1) == '/'){
+                url = '../routes' + url;
+            }else{
+                url = '../routes' + '/' + url;
+            }
+        }
+
+
+        //Security check
+        if(config != null && typeof config.apikey !== "undefined"){
+            authorization = "Bearer " + config.apikey;
+        }else{
+            if(localStorage.getItem("token") != '' && localStorage.getItem("token") != null && localStorage.getItem("token") != 'undefined'){
+                apikey = localStorage.getItem("token");
+                authorization = "Bearer " + apikey;
+            }
+        }
+
+        return axios.post(url, formdata, {
+            headers: {
+            'Content-Type': 'multipart/form-data',
+            'Authorization': authorization
+            }
+        }).catch(function (error) {
+            if(error.response.status == 401){
+                Swal.fire({
+                    type: 'error',
+                    title: 'Account error',
+                    text: "Login error or session expired",
+                }).then(function(result) {
+                    Utils.doLogoutAndGoHome();
+                }).catch(swal.noop);
+            }else{
+                Utils.hideLoading();
+                Swal.fire({
+                    type: 'error',
+                    title: error.response.data.status,
+                    text: error.response.data.message,
+                }).then(function(result) {
+                    return;
+                })
+                .catch(swal.noop);
+            }
+        });
+    },
+
+    downloadFile: function (content, fileName, type="text/plain") {
+
+        // Create an invisible A element
+        const a = document.createElement("a");
+        a.style.display = "none";
+        document.body.appendChild(a);
+
+        // Set the HREF to a Blob representation of the content to be downloaded
+        a.href = window.URL.createObjectURL(
+          new Blob([content], { type })
+        );
+
+        // Use download attribute to set set desired file name
+        a.setAttribute("download", fileName);
+
+        // Trigger the download by simulating click
+        a.click();
+
+        // Cleanup
+        window.URL.revokeObjectURL(a.href);
+        document.body.removeChild(a);
     },
 
     unserialize: function (data) {

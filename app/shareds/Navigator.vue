@@ -39,7 +39,7 @@
                 if (typeof response.data.routes !== 'undefined' && response.data.routes.length > 0) {
                     for(var i=0; i<response.data.routes.length; i++){
                         self.$router.addRoutes([
-                            { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component + '?v=' + new Date().getTime() ) },
+                            { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component + '?v=' + new Date().getTime()) },
                         ])
                     }
                 }
@@ -50,6 +50,7 @@
 
                 if (typeof response.data.bootstrapPage !== 'undefined' && response.data.bootstrapPage.route != '') {
                     self.activeSection = response.data.bootstrapPage.title;
+                    sessionStorage.setItem("activeSection", response.data.bootstrapPage.title);
                     router.push(response.data.bootstrapPage.route);
                 }
             });
@@ -65,7 +66,7 @@
             onSelectedSection (value) {
                 this.activeSection = value;
             }
-        },
+        }
     }
 </script>
 

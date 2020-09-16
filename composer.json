@@ -17,12 +17,12 @@
     ],
 
     "require": {
-        "slim/slim": "^3",
-        "monolog/monolog": "^1",
+        "slim/slim": "^4",
+        "monolog/monolog": "^2",
         "tuupola/base62": "^2",
         "tuupola/slim-jwt-auth": "^3",
         "tuupola/slim-basic-auth": "^3",
-        "vlucas/phpdotenv": "^4",
+        "vlucas/phpdotenv": "^5",
         "twig/twig": "^3"
     }
 }

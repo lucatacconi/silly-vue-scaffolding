@@ -58,28 +58,14 @@ $container->set('errorHandler', function ($container) {
 
 AppFactory::setContainer($container);
 
+
 //Starting Slim
 $app = AppFactory::create();
-
-
-// echo(__DIR__."\n");
-// echo($_SERVER['SCRIPT_NAME']."\n");
-// print_r($adir);
-// echo "\n";
-// die(", $dir");
-
-
-$base_path = "/monolite/silly-vue-scaffolding/routes";
+$base_path = str_replace('/index.php', '', $_SERVER['SCRIPT_NAME']);
 $app->setBasePath($base_path);
 
-// $base_path = "./routes";
-// $app->setBasePath($base_path);
 
-
-// $app->addRoutingMiddleware();
-
-
-
+//Starting Jwt Authenticationim
 $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,
     "secret" => $_ENV["JWT_SECRET"],
@@ -97,6 +83,7 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
 ]));
 
 
+// Add Custom Error Handler
 $customErrorHandler = function (
     Request $request,
     Throwable $exception,
@@ -105,7 +92,6 @@ $customErrorHandler = function (
     bool $logErrorDetails,
     ?LoggerInterface $logger = null
 ) use ($app) {
-    // $logger->error($exception->getMessage());
 
     $data = [];
     $data["status"] = "Engine error";
@@ -117,10 +103,6 @@ $customErrorHandler = function (
                     ->withHeader("Content-Type", "application/json");
 };
 
-
-
-// Add Error Middleware
-// $logger = null;/
 $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 

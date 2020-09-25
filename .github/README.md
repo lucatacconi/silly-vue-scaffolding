@@ -1,5 +1,10 @@
 # silly-vue-scaffolding
 
+[![Latest Stable Version](https://poser.pugx.org/lucatacconi/silly-vue-scaffolding/v/stable)](https://packagist.org/packages/lucatacconi/silly-vue-scaffolding)
+[![Total Downloads](https://poser.pugx.org/lucatacconi/silly-vue-scaffolding/downloads)](https://packagist.org/packages/lucatacconi/silly-vue-scaffolding)
+[![Latest Unstable Version](https://poser.pugx.org/lucatacconi/silly-vue-scaffolding/v/unstable)](https://packagist.org/packages/lucatacconi/silly-vue-scaffolding)
+[![License](https://poser.pugx.org/lucatacconi/silly-vue-scaffolding/license)](https://packagist.org/packages/lucatacconi/silly-vue-scaffolding)
+
 ![silly-vue-scaffolding](https://user-images.githubusercontent.com/9921890/94295629-ccbbed00-ff61-11ea-93e7-3f2255c5c344.png)
 
 Vue/Vuetify, combined with systems such as Webpack, Browserify or Vue-cli becomes an extremely easy and versatile development tool.

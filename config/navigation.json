@@ -15,7 +15,7 @@
 
             "action":{
                 "path": "/dashboard",
-                "component": "../../app/sections/dashboard/Dashboard.vue"
+                "component": "../app/sections/dashboard/Dashboard.vue"
             },
 
             "layout":{
@@ -52,11 +52,11 @@
 
                     "action":{
                         "path": "/doc/scaffoldingSetup",
-                        "component": "../../app/sections/documentation/ScaffoldingSetup.vue"
+                        "component": "../app/sections/documentation/ScaffoldingSetup.vue"
                     },
 
                     "layout":{
-                        "icon": "mdi-settings-outline",
+                        "icon": "mdi-cog-outline",
                         "disabled": false,
                         "color": false,
                         "class": false
@@ -70,7 +70,7 @@
 
                     "action":{
                         "path": "/doc/userSetup",
-                        "component": "../../app/sections/documentation/UsersSetup.vue"
+                        "component": "../app/sections/documentation/UsersSetup.vue"
                     },
 
                     "layout":{
@@ -88,7 +88,7 @@
 
                     "action":{
                         "path": "/doc/navigationSetup",
-                        "component": "../../app/sections/documentation/NavigationSetup.vue"
+                        "component": "../app/sections/documentation/NavigationSetup.vue"
                     },
 
                     "layout":{

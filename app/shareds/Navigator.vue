@@ -1,4 +1,4 @@
-<template id="navigator" lang="html">
+<template id="navigator">
     <div>
         <navbar v-on:drawer="drawer=!drawer" :activesection="activeSection"></navbar>
         <navdrawer :drawer="drawer" v-on:select="selection=$event" :navmap="navmap" :selection="selection" v-on:selectedsection="onSelectedSection"></navdrawer>
@@ -21,7 +21,7 @@
     module.exports = {
         data: function() {
             return {
-                drawer: "true",
+                drawer: true,
                 routes: [],
                 navmap: [],
                 selection: 0,
@@ -32,15 +32,11 @@
         mounted: function(){
 
             self = this;
-
             Utils.apiCall("get", "/navigation/")
             .then(function (response) {
-
                 if (typeof response.data.routes !== 'undefined' && response.data.routes.length > 0) {
                     for(var i=0; i<response.data.routes.length; i++){
-                        self.$router.addRoutes([
-                            { path: response.data.routes[i].path, component: httpVueLoader(response.data.routes[i].component + '?v=' + new Date().getTime()) },
-                        ])
+                        self.load(response.data.routes[i].path,response.data.routes[i].component);
                     }
                 }
 
@@ -51,20 +47,29 @@
                 if (typeof response.data.bootstrapPage !== 'undefined' && response.data.bootstrapPage.route != '') {
                     self.activeSection = response.data.bootstrapPage.title;
                     sessionStorage.setItem("activeSection", response.data.bootstrapPage.title);
-                    router.push(response.data.bootstrapPage.route);
+                    if(self.$route.path!=response.data.bootstrapPage.route) router.push(response.data.bootstrapPage.route);
                 }
             });
         },
 
         components: {
-            'navbar': httpVueLoader('../../app/shareds/NavBar.vue' + '?v=' + new Date().getTime()),
-            'navdrawer': httpVueLoader('../../app/shareds/NavDrawer.vue' + '?v=' + new Date().getTime()),
-            'appfooter': httpVueLoader('../../app/shareds/Footer.vue' + '?v=' + new Date().getTime())
+            'navbar': ()=> Utils.loadFileVue('../app/shareds/NavBar.vue'),
+            'navdrawer': ()=> Utils.loadFileVue('../app/shareds/NavDrawer.vue'),
+            'appfooter': ()=> Utils.loadFileVue('../app/shareds/Footer.vue')
         },
 
         methods: {
             onSelectedSection (value) {
                 this.activeSection = value;
+            },
+            load:function(path,url){
+                var self=this;
+
+                Utils.loadFileVue(url).then(function(comp){
+                    self.$router.addRoutes([
+                        { path: path, component: comp },
+                    ])
+                })
             }
         }
     }

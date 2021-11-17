@@ -1,5 +1,4 @@
 <template>
-    <div>
         <v-navigation-drawer
             v-model="drawer"
             app
@@ -82,7 +81,6 @@
                 </template>
             </v-list>
         </v-navigation-drawer>
-    <div>
 </template>
 
 <script>

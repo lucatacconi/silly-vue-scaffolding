@@ -1,4 +1,4 @@
-<template id="userinfo" lang="html">
+<template id="userinfo">
     <div>
         <v-menu left bottom>
             <!-- Launch button on NavBar -->

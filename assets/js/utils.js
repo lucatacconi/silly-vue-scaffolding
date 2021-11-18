@@ -10,7 +10,7 @@ var Utils = {
                 async getFile(url) {
                     const res = await fetch(url);
                     if ( !res.ok ){
-                        console.error("Errore file non trovato"+url);
+                        console.error("Template file not found"+url);
                         resolve(null);
                         return;
                     }

@@ -1,12 +1,13 @@
 
-#compiled
+#Ignore all log but conserve directory structure
 var/logs/*
 !var/logs/.htaccess
 
 # Logs files
+# Ignore all logs files everywhere
 *.log
 
-# Zipped files
+# Ignore all zipped files
 *.7z
 *.dmg
 *.gz
@@ -16,6 +17,8 @@ var/logs/*
 *.tar
 *.zip
 
-# Ingore all lib e vendor file
+# Ignore all lib e vendor file
 /vendor/*
 composer.lock
+#Ignore IDEs' configuration directory
+.vscode

@@ -9,9 +9,10 @@
                 <template v-for="navItem in navMap">
                     <v-list-group
                         v-if="navItem.type == 'SUBM'"
-                        :value="navItem.layout.expanded ? navItem.layout.expanded : null"
+                        v-model="navItem.layout.expanded"
                         :key="navItem.id"
                         active-class="groupActivated-NavDrawer"
+                        :color="navItem.layout.color ? navItem.layout.expanded : 'error'"
                     >
                         <template v-slot:activator>
                             <v-list-item-icon>
@@ -23,7 +24,7 @@
                                     {{ navItem.title }}
                                 </v-list-item-title>
                                 <v-list-item-subtitle v-if="navItem.subtitle">
-                                    {{ navItem.subtitle }}
+                                    <span :class="navItem.layout.expanded ? 'error--text' : null">{{ navItem.subtitle }}{{navItem.layout.expanded}}</span>
                                 </v-list-item-subtitle>
                             </v-list-item-content>
                         </template>
@@ -43,7 +44,7 @@
 
                             <v-list-item-content>
                                 <v-list-item-title
-                                    :class="subItem.layout.color ? subItem.layout.color : (subItem.action.path == activeRoute ? 'red--text' : null) "
+                                    :class="subItem.layout.color ? subItem.layout.color : (subItem.action.path == activeRoute ? 'success--text' : null) "
                                 >
                                     {{ subItem.title }}
                                 </v-list-item-title>
@@ -70,7 +71,7 @@
 
                         <v-list-item-content>
                             <v-list-item-title
-                                :class="navItem.layout.color ? navItem.layout.color : (navItem.action.path == activeRoute ? 'red--text' : null)"
+                                :class="navItem.layout.color ? navItem.layout.color : (navItem.action.path == activeRoute ? 'success--text' : null)"
                             >
                                 {{ navItem.title }}
                             </v-list-item-title>

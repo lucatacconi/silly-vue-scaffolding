@@ -21,7 +21,7 @@
                     </v-list-item-content>
 
                     <v-list-item-avatar tile size="80">
-                        <v-icon size="80" color="blue-grey">account_box</v-icon>
+                        <v-icon size="80" color="secondary">account_box</v-icon>
                     </v-list-item-avatar>
 
                 </v-list-item>

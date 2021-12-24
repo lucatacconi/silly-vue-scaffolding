@@ -1,9 +1,9 @@
 <template id="navigator" lang="html">
-    <v-app-bar app clipped-right color="blue-grey" dense dark>
+    <v-app-bar app clipped-right color="secondary" dense dark>
         <v-app-bar-nav-icon @click="drawer()" ></v-app-bar-nav-icon>
         <v-toolbar-title>
             {{appName}}
-            <span class="subtitle-1 yellow--text lighten-5 font-weight-black" v-if="activesection != ''"> - {{ activesection }}</span>
+            <span class="subtitle-1 warning--text font-weight-black" v-if="activesection != ''"> - {{ activesection }}</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
         <navbartools></navbartools>

@@ -1,4 +1,6 @@
-# Ignore everything in this directory
-*
-# Except this file
-!.gitignore
+# prevent listing of directory contents
+Options -Indexes
+
+#Set master permission
+Order Allow,Deny
+Deny from all

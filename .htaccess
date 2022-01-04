@@ -1,25 +1,31 @@
-RewriteEngine On
+# prevent listing of directory contents
+Options -Indexes
 
-Options All -Indexes
-Options +FollowSymLinks
-ServerSignature Off
+#Set master permission
+Order Allow,Deny
+Allow from all
+
+#block specific files from being read
+<Files .htaccess>
+    Deny from all
+</Files>
+
+<Files "*.yml">
+    Deny from all
+</Files>
 
 <Files "*.json">
-    Order Deny,Allow
+    Deny from all
+</Files>
+
+<Files "*.env">
+    Deny from all
+</Files>
+
+<Files "*.gitignore">
     Deny from all
 </Files>
 
 <Files "*.lock">
-    Order Deny,Allow
-    Deny from all
-</Files>
-
-<Files "*.log">
-    Order Deny,Allow
-    Deny from all
-</Files>
-
-<Files ".env">
-    Order Deny,Allow
     Deny from all
 </Files>

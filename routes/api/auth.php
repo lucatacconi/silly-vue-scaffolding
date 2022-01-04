@@ -21,7 +21,7 @@ $app->group('/auth', function (RouteCollectorProxy $group) {
 
         $aACCOUNT = null;
         foreach($aACCOUNTs as $row_key => $row_data){
-            if($row_data["username"] == $params["USERNAME"] && $row_data["password"] == $params["PASSWORD"]){
+            if($row_data["username"] == $params["USERNAME"] && md5($row_data["password"]) == $params["PASSWORD"]){
                 $aACCOUNT = $row_data;
             }
         }
@@ -91,7 +91,7 @@ $app->group('/auth', function (RouteCollectorProxy $group) {
             $aACCOUNT_basic_data["email"] = !empty($aACCOUNT["email"]) ? $aACCOUNT["email"] : '';
             $aACCOUNT_basic_data["expireDate"] = $aACCOUNT["expireDate"];
             $aACCOUNT_basic_data["loginDate"] = date("Y-m-d H:i:s");
-            $aACCOUNT_basic_data["sessionExpireDate"] = date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s")." + $duration") );;
+            $aACCOUNT_basic_data["sessionExpireDate"] = date('Y-m-d H:i:s', strtotime(date("Y-m-d H:i:s")." + $duration") );
 
             $data["token"] = $token;
             $data["expires"] = $future->getTimeStamp();

@@ -14,7 +14,7 @@
 
                 <v-card class="mt-10 mb-10">
                     <v-card-text class="grey lighten-4 font-weight-bold">
-<pre class="red--text text--darken-3">
+<pre class="error--text text--darken-1">
     [
         {
             "username":"admin",

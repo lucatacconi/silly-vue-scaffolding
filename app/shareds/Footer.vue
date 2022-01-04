@@ -2,9 +2,9 @@
     <v-footer
       app inset
       dark
-      color="blue-grey"
+      color="secondary"
     >
-        {{appName}}
+        {{appName}} - {{appVersion}}
         <v-spacer></v-spacer>
         &copy; {{ new Date().getFullYear() }}
     </v-footer>
@@ -18,6 +18,9 @@
         computed:{
             appName: function () {
                 return document.querySelector("meta[name='application-name']").getAttribute("content");
+            },
+            appVersion: function () {
+                return document.querySelector("meta[name='application-version']").getAttribute("content");
             }
         }
     }

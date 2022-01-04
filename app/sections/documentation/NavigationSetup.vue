@@ -18,7 +18,7 @@
 
                 <v-card class="mt-10 mb-10">
                     <v-card-text class="grey lighten-4 font-weight-bold">
-<pre class="red--text text--darken-3">
+<pre class="error--text text--darken-1">
     "bootstrapPage":{
         "route": "/dashboard",
         "title": "Dashboard"
@@ -42,7 +42,7 @@
 
                 <v-card class="mt-10 mb-10">
                     <v-card-text class="grey lighten-4 font-weight-bold">
-<pre class="red--text text--darken-3">
+<pre class="error--text text--darken-1">
     {
         "title": "Dashboard",
         "subtitle": "App main page",
@@ -89,7 +89,7 @@
 
                 <v-card class="mt-10 mb-10">
                     <v-card-text class="grey lighten-4 font-weight-bold">
-<pre class="red--text text--darken-3">
+<pre class="error--text text--darken-1">
     {
         "divider": true,
         "visible": true
@@ -104,7 +104,7 @@
 
                 <v-card class="mt-10 mb-10">
                     <v-card-text class="grey lighten-4 font-weight-bold">
-<pre class="red--text text--darken-3">
+<pre class="error--text text--darken-1">
     {
         "title": "App1",
         "subtitle": "Example app1"

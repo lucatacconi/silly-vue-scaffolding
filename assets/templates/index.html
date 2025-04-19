@@ -10,16 +10,34 @@
 
         <meta name="robots" content="index, nofollow">
 
+        <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+        <meta http-equiv="X-Content-Type-Options" content="nosniff">
+        <meta http-equiv="X-Permitted-Cross-Domain-Policies" content="none">
+        <meta http-equiv="Referrer-Policy" content="no-referrer">
+        <meta http-equiv="Permissions-Policy" content="accelerometer=(),autoplay=(),camera=(),display-capture=(),document-domain=(),encrypted-media=(),fullscreen=(),geolocation=(),gyroscope=(),magnetometer=(),microphone=(),midi=(),payment=(),picture-in-picture=(),publickey-credentials-get=(),screen-wake-lock=(),sync-xhr=(self),usb=(),web-share=(),xr-spatial-tracking=()">
+        <meta http-equiv="Cache-Control" content="no-store, max-age=0">
+        <meta http-equiv="Pragma" content="no-cache">
+        <meta http-equiv="Clear-Site-Data" content="cache,cookies,storage">
+
+
         <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Material+Icons" rel="stylesheet">
-        <link href="https://use.fontawesome.com/releases/v5.13.0/css/all.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/@mdi/font@6.x/css/materialdesignicons.min.css" rel="stylesheet">
 
         <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
 
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 
-        <link href="../assets/images/logo.png" rel="icon" type="image/png">
+        <link rel="apple-touch-icon" sizes="180x180" href="../assets/images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../assets/images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon-16x16.png">
+        <link rel="manifest" href="../assets/images/site.webmanifest">
+        <link rel="mask-icon" href="../assets/images/safari-pinned-tab.svg" color="#5bbad5">
+        <link rel="shortcut icon" href="../assets/images/favicon.ico">
+        <meta name="msapplication-TileColor" content="#2d89ef">
+        <meta name="msapplication-config" content="../assets/images/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+
         <link href="../assets/css/app.css" rel="stylesheet">
 
         <title>{{ application.title }}</title>
@@ -52,6 +70,7 @@
         <script>
 
             var lang = document.documentElement.lang;
+            var cronstrue = window.cronstrue;
 
             Vue.use(Vuetify);
             Vue.use(VueRouter)
@@ -70,24 +89,10 @@
                     dark: localStorage.getItem('theme')!=undefined&&localStorage.getItem('theme')!="false" ? true : false,
                     themes: {
                         light: {
-                            primary: '#20a8d8',
-                            secondary: '#607d8b',
-                            drawer: '#20a8d8',
-                            accent: '#8c9eff',
-                            error: '#f44336',
-                            info: '#63c2de',
-                            success: '#4caf50',
-                            warning: '#ffeb3b'
+                            button:'#616161',
                         },
                         dark: {
-                            primary: '#20a8d8',
-                            secondary: '#607d8b',
-                            drawer: '#4caf50',
-                            accent: '#8c9eff',
-                            error: '#f44336',
-                            info: '#63c2de',
-                            success: '#4caf50',
-                            warning: '#ffeb3b'
+                            button:'#ffffff',
                         }
                     }
                 }

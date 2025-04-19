@@ -88,6 +88,14 @@ var Utils = {
         })
     },
 
+    ifClipboardEnabled: function () {
+        if (location.protocol === "https:" || location.hostname === "localhost" || location.hostname === "127.0.0.1") {
+            return true;
+        }else{
+            return false;
+        }
+    },
+
     apiCall: function (method, url, parameters, config) {
 
         if (!method || !url) {
@@ -126,7 +134,11 @@ var Utils = {
         var call_config = {};
         call_config.method = method;
         call_config.url = url
-        call_config.params = parameters;
+        if(call_config.method.toUpperCase()=="GET"){
+            call_config.params = parameters;
+        }else{
+            call_config.data = parameters;
+        }
 
         //Security check
         call_config.headers = {};

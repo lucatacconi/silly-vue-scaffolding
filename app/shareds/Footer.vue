@@ -2,7 +2,7 @@
     <v-footer
       app inset
       dark
-      color="secondary"
+      color="blue-grey"
     >
         {{appName}} - {{appVersion}}
         <v-spacer></v-spacer>

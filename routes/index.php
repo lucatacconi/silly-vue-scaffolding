@@ -11,8 +11,6 @@ require '../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable("../");
 $dotenv->load();
 
-date_default_timezone_set($_ENV["TIMEZONE"]);
-
 
 // Registering config parameters
 $config_path = "../config/";
@@ -25,20 +23,19 @@ foreach (glob($config_path."*.json") as $filename) {
     }
 }
 
+
 //Base application path calculation
 $adir = explode("/", __DIR__);
 $dir = implode("/", $adir);
-
-
 
 while (!\file_exists($dir.'/'.'composer.json')) {
     array_pop($adir);
     $dir = implode("/", $adir);
 }
 
-
 $container_config["app_configs"]["paths"] = [];
 $container_config["app_configs"]["paths"]["base_path"] = $dir;
+
 
 $container = new Container();
 $container->set('configs', $container_config);

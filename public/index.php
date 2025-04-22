@@ -8,7 +8,6 @@ require '../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable("../");
 $dotenv->load();
 
-date_default_timezone_set($_ENV["TIMEZONE"]);
 
 $twig_config = [];
 $twig_config['cache'] = false;
@@ -26,9 +25,6 @@ foreach (glob($config_path."*.json") as $filename) {
         $container_config[ str_replace(array($config_path, ".json"), "", $filename) ] = json_decode($config_content, true);
     }
 }
-
-
-
 
 $tpl_data = [];
 $tpl_data["run_mode"] = $_ENV["RUN_MODE"];

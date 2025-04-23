@@ -67,7 +67,24 @@ $app->add(new Tuupola\Middleware\JwtAuthentication([
     "secure" => false,
     "secret" => $_ENV["JWT_SECRET"],
 
-    "ignore" => [$base_path."/auth/login", $base_path."/test"],
+    "ignore" => [$base_path."/auth/login", $base_path."/tools", $base_path."/test" ],
+
+    "error" => function ($response, $arguments) {
+        $data = [];
+        $data["status"] = "Authentication error";
+        $data["message"] = $arguments["message"];
+
+        $response->getBody()->write(json_encode($data, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT));
+        return $response->withHeader("Content-Type", "application/json");
+    }
+]));
+
+$app->add(new Tuupola\Middleware\HttpBasicAuthentication([
+    "path" => [ $base_path."/tools" ],
+    "realm" => "Protected",
+    "users" => [
+        $_ENV["TOOLS_LOGIN"] => $_ENV["TOOLS_PASSWORD"]
+    ],
 
     "error" => function ($response, $arguments) {
         $data = [];
@@ -104,8 +121,25 @@ $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 $errorMiddleware->setDefaultErrorHandler($customErrorHandler);
 
 
-foreach (glob("./api/*.php") as $filename) {
-    require $filename;
+$route_path = "./api";
+
+$directoryIterator = new \RecursiveDirectoryIterator($route_path);
+$recursiveIterator = new \RecursiveIteratorIterator($directoryIterator);
+
+
+$quotedSuffix = \preg_quote('.php', '/');
+$regexIterator = new \RegexIterator( $recursiveIterator, "/^.+{$quotedSuffix}$/i", \RecursiveRegexIterator::GET_MATCH );
+
+$files = \array_map(
+    static function (array $file) {
+        return new \SplFileInfo(\reset($file));
+    },
+    \iterator_to_array($regexIterator)
+);
+
+foreach ($files as $route_file) {
+    require_once $route_file;
 }
 
+$app->addBodyParsingMiddleware();
 $app->run();
